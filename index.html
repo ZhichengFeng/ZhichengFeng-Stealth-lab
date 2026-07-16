@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="清华大学姚学锋团队多尺度隐身研究交互展示"
+    />
+    <meta name="theme-color" content="#17343c" />
+    <title>清华大学姚学锋团队 — AI Stealth Lab</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #17343c;
+      }
+
+      iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: #17343c;
+      }
+
+      .loading {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        display: grid;
+        place-items: center;
+        color: #b9f5fa;
+        background:
+          radial-gradient(circle at 50% 42%, #28515a 0%, transparent 44%),
+          #17343c;
+        font: 500 13px/1.5 "Segoe UI", "Microsoft YaHei", sans-serif;
+        letter-spacing: 0.12em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading" id="loading" role="status">LOADING AI STEALTH LAB</div>
+    <iframe
+      src="https://tpms-rcs-explorer-260715.fzcfzcfzc111.chatgpt.site/"
+      title="清华大学姚学锋团队多尺度隐身研究交互展示"
+      allow="fullscreen"
+      referrerpolicy="no-referrer"
+      onload="document.getElementById('loading').hidden = true"
+    ></iframe>
+    <noscript>请启用 JavaScript 以打开交互展示。</noscript>
+  </body>
+</html>
