@@ -1,0 +1,1 @@
+var e={}.NEXT_PUBLIC_BASE_PATH??`/`,t=e===`/`?`/`:`/${e.replace(/^\/+|\/+$/g,``)}/`;function n(e){return`${t}${e.replaceAll(`\\`,`/`).replace(/^public\//,``).replace(/^\/+/,``)}`}export{n as t};
