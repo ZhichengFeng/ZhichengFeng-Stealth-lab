@@ -1,7 +1,4 @@
-# AI Stealth Lab — GitHub Pages
+# AI Stealth Lab — ModelScope Static Studio
 
-This repository publishes the complete static browser build of AI Stealth Lab. It is self-contained and does not use a ChatGPT/Sites iframe or require a GPT account.
+This branch contains the pre-built root-path static site for ModelScope. Deploy it as a public Static Studio; no Node.js build step is required.
 
-Expected public address:
-
-`https://swoswowordnewnew.github.io/ZhichengFeng-Stealth-lab/`
