@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "realDatasetProvenance",
+  "id": "cst-honeycomb-smoke-reflection",
+  "label": "Verified CST honeycomb smoke reflection cache",
+  "datasetType": "cstFloquetReflectionCurve",
+  "quantity": "PEC-backed co-polar Floquet reflection coefficient",
+  "isSynthetic": false,
+  "dataFile": "cst_honeycomb_smoke.csv",
+  "sampleCount": 1001,
+  "frequencyRangeGHz": [
+    8.0,
+    12.0
+  ],
+  "polarizations": [
+    "TE",
+    "TM"
+  ],
+  "columns": [
+    "frequency_GHz",
+    "TE_reflection_real",
+    "TE_reflection_imag",
+    "TE_reflection_dB",
+    "TM_reflection_real",
+    "TM_reflection_imag",
+    "TM_reflection_dB"
+  ],
+  "scopeWarning": "Only this PEC-backed honeycomb co-polar reflection curve is verified CST output. It is not a complete TPMS-to-RCS case, contains no transmission/S21, and does not make the synthetic TPMS, field, tensor, surface-current, or RCS assets real.",
+  "transmissionProvided": false,
+  "s21Provided": false,
+  "reflectionMapping": {
+    "TE": {
+      "treeItem": "1D Results\\S-Parameters\\SZmax(1),Zmax(1)",
+      "mode": 1,
+      "meaning": "co-polar TE reflection"
+    },
+    "TM": {
+      "treeItem": "1D Results\\S-Parameters\\SZmax(2),Zmax(2)",
+      "mode": 2,
+      "meaning": "co-polar TM reflection"
+    },
+    "subscriptNote": "The CST S-parameter subscripts identify ports/Floquet modes; they are not themselves polarization labels."
+  },
+  "geometry_parameters_status": "missing",
+  "geometry_parameters_note": "????????????",
+  "geometryParameters": {
+    "status": "missing",
+    "note": "????????????"
+  },
+  "job": {
+    "jobId": "20260715_202951_smoke_e9da04",
+    "state": "done",
+    "solverType": "frequency_domain",
+    "portType": "floquet",
+    "solveTimeS": 8.8964952,
+    "startedAt": "2026-07-15 20:29:52",
+    "updatedAt": "2026-07-15 20:30:05",
+    "error": ""
+  },
+  "projectSource": {
+    "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick.cst",
+    "bytes": 43759,
+    "sha256": "c8f14f1c9a6d900d81f988ca06bcefa334e7c8a5317d4ba05095a0af966a6ed5"
+  },
+  "sourceFiles": [
+    {
+      "polarization": "TE",
+      "format": "dB",
+      "treeItem": "1D Results\\S-Parameters\\SZmax(1),Zmax(1)",
+      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TE_dB.txt",
+      "bytes": 58196,
+      "sha256": "d36bc1567f83c5d40417cc72cda633ba15bb269ef0a6448bc33bc2862074bac4"
+    },
+    {
+      "polarization": "TM",
+      "format": "dB",
+      "treeItem": "1D Results\\S-Parameters\\SZmax(2),Zmax(2)",
+      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TM_dB.txt",
+      "bytes": 58196,
+      "sha256": "3615afb5bc43776347cd594e5cbd7fec86a9814fe66b5c0f79e5635be880a492"
+    },
+    {
+      "polarization": "TE",
+      "format": "real",
+      "treeItem": "1D Results\\S-Parameters\\SZmax(1),Zmax(1)",
+      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TE_real.txt",
+      "bytes": 58194,
+      "sha256": "0797cccf8610a56089e5a64ca03508975943582b236a33c0ee0ca42d60337c2a"
+    },
+    {
+      "polarization": "TM",
+      "format": "real",
+      "treeItem": "1D Results\\S-Parameters\\SZmax(2),Zmax(2)",
+      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TM_real.txt",
+      "bytes": 58194,
+      "sha256": "22745f9728bf7845213612ea5c2f1496e6124595bb25a3363b4c86b9724d3790"
+    },
+    {
+      "polarization": "TE",
+      "format": "imag",
+      "treeItem": "1D Results\\S-Parameters\\SZmax(1),Zmax(1)",
+      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TE_imag.txt",
+      "bytes": 58199,
+      "sha256": "41307a8ee6c539c2ddf429af8fa7b7db5ec4b9c0102ada867b59e459d4b894d8"
+    },
+    {
+      "polarization": "TM",
+      "format": "imag",
+      "treeItem": "1D Results\\S-Parameters\\SZmax(2),Zmax(2)",
+      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TM_imag.txt",
+      "bytes": 58199,
+      "sha256": "11e9f1e71cf9999e90b0c34d0994035202fedf3aeb77436c977b3f3906f1fb1b"
+    }
+  ],
+  "verification": {
+    "performedReadOnly": true,
+    "allSixCurveFilesPresent": true,
+    "frequencyRowsAligned": true,
+    "frequencyStepGHz": 0.0039999999999995595,
+    "maximumDbVsComplexConsistencyErrorDb": 7.889920361492386e-07,
+    "statusFileState": "done"
+  },
+  "importedAt": "2026-07-15T11:51:24Z"
+}

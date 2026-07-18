@@ -1,0 +1,64 @@
+{
+  "source": "new.SLDPRT",
+  "sourceRole": "SOLIDWORKS graphics-mesh body supplied by the project owner",
+  "sourceCadBytes": 2608204,
+  "sourceCadSha256": "b67b2ffa44fa10b2e41bded094663dcf228ecb5d89fee8b7714b927c7c44e530",
+  "conversionChain": [
+    "SOLIDWORKS 2024 SP5 OpenDoc6 (silent)",
+    "SOLIDWORKS STL export",
+    "Three.js STLLoader",
+    "position-only vertex merge at 1e-5 tolerance",
+    "centering, +Z nose to -Z nose rotation, wingspan normalization",
+    "Three.js GLTFExporter binary GLB"
+  ],
+  "sourceBytes": 1512234,
+  "intermediateStlSha256": "cfb084f8c358492d342560a95086cf0652fb100af8b7658e941e2eb56390e097",
+  "sourceTriangles": 30243,
+  "mergedVertices": 14934,
+  "indexedTriangles": 30243,
+  "sourceBounds": {
+    "min": [
+      0,
+      0,
+      0
+    ],
+    "max": [
+      6.010275840759277,
+      0.3775230050086975,
+      2.5475049018859863
+    ],
+    "size": [
+      6.010275840759277,
+      0.3775230050086975,
+      2.5475049018859863
+    ],
+    "units": "millimetres (SOLIDWORKS STL export)"
+  },
+  "sceneTransform": {
+    "centered": true,
+    "rotateYRadians": 3.141592653589793,
+    "scale": 1.6638171466580645,
+    "targetWingspan": 10
+  },
+  "outputBounds": {
+    "min": [
+      -5,
+      -0.314064621925354,
+      -2.119291067123413
+    ],
+    "max": [
+      5,
+      0.314064621925354,
+      2.119291067123413
+    ],
+    "size": [
+      10,
+      0.628129243850708,
+      4.238582134246826
+    ],
+    "units": "scene units"
+  },
+  "outputBytes": 361608,
+  "outputSha256": "46d587209400952511db409fc857197e5b5cd3fb87d466aa425c24ee455f5c90",
+  "claimBoundary": "Geometric presentation asset only; no claim of exact full-aircraft electromagnetic fidelity."
+}

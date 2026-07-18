@@ -1,0 +1,432 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "datasetManifest",
+  "isSynthetic": true,
+  "dataMode": "mixed",
+  "containsRealData": true,
+  "syntheticLabel": "Synthetic demonstration data",
+  "generatedAt": "2026-07-15T12:42:15Z",
+  "dataRoot": "/data",
+  "defaultCaseId": "gyroid-te",
+  "structures": [
+    "Gyroid",
+    "Diamond",
+    "Primitive"
+  ],
+  "polarizations": [
+    "TE",
+    "TM"
+  ],
+  "requiredAssets": [
+    "microField",
+    "portField",
+    "sParameters",
+    "effectiveTensor",
+    "surfaceCurrent",
+    "rcs"
+  ],
+  "summary": {
+    "caseCount": 6,
+    "assetCount": 36,
+    "scannedJsonFiles": 37,
+    "syntheticCaseCount": 6,
+    "realDatasetCount": 1
+  },
+  "validation": {
+    "status": "valid",
+    "errorCount": 0,
+    "warningCount": 0,
+    "reportPath": "/data/validation_report.json"
+  },
+  "cases": [
+    {
+      "id": "gyroid-te",
+      "structure": "Gyroid",
+      "polarization": "TE",
+      "material": "M5-demo",
+      "incidentAngleDeg": 0.0,
+      "nominalFrequencyGHz": 10.0,
+      "isSynthetic": true,
+      "assets": {
+        "microField": "/data/micro_field/gyroid_te.json",
+        "portField": "/data/port_field/gyroid_te.json",
+        "sParameters": "/data/s_parameters/gyroid_te.json",
+        "effectiveTensor": "/data/effective_tensor/gyroid_te.json",
+        "surfaceCurrent": "/data/surface_current/gyroid_te.json",
+        "rcs": "/data/rcs/gyroid_te.json"
+      },
+      "assetMeta": {
+        "microField": {
+          "path": "/data/micro_field/gyroid_te.json",
+          "bytes": 150438,
+          "sha256": "db8022d0ee51126f3c565e3f2d4e0e6b3cefd895a8e4e45a1f67830db2108cb0",
+          "kind": "microField",
+          "isSynthetic": true
+        },
+        "portField": {
+          "path": "/data/port_field/gyroid_te.json",
+          "bytes": 49247,
+          "sha256": "43cee19e201d8f1bb92826b55ac9f084a7f721dd491c97ae08b5801b1f3e0dd8",
+          "kind": "portField",
+          "isSynthetic": true
+        },
+        "sParameters": {
+          "path": "/data/s_parameters/gyroid_te.json",
+          "bytes": 5304,
+          "sha256": "37383f93066736e2d70c75a0a8fcc3a0fd48f9f4c1a8a248f07c8faece71facf",
+          "kind": "sParameters",
+          "isSynthetic": true
+        },
+        "effectiveTensor": {
+          "path": "/data/effective_tensor/gyroid_te.json",
+          "bytes": 6450,
+          "sha256": "7c79942258a10a90457800cf4eda39df48893782bc9c40157970a93e8aa1cb87",
+          "kind": "effectiveTensor",
+          "isSynthetic": true
+        },
+        "surfaceCurrent": {
+          "path": "/data/surface_current/gyroid_te.json",
+          "bytes": 57683,
+          "sha256": "d8bf370a2d624c558dbc9ca23e0eebbc143562cbc6479e889462eb35e41544fa",
+          "kind": "surfaceCurrent",
+          "isSynthetic": true
+        },
+        "rcs": {
+          "path": "/data/rcs/gyroid_te.json",
+          "bytes": 7042,
+          "sha256": "b7ce7a0383e02292e58fae137c75d7a5fa7a66a92ab57d8d0a1e4feb77569c62",
+          "kind": "rcs",
+          "isSynthetic": true
+        }
+      }
+    },
+    {
+      "id": "gyroid-tm",
+      "structure": "Gyroid",
+      "polarization": "TM",
+      "material": "M5-demo",
+      "incidentAngleDeg": 0.0,
+      "nominalFrequencyGHz": 10.0,
+      "isSynthetic": true,
+      "assets": {
+        "microField": "/data/micro_field/gyroid_tm.json",
+        "portField": "/data/port_field/gyroid_tm.json",
+        "sParameters": "/data/s_parameters/gyroid_tm.json",
+        "effectiveTensor": "/data/effective_tensor/gyroid_tm.json",
+        "surfaceCurrent": "/data/surface_current/gyroid_tm.json",
+        "rcs": "/data/rcs/gyroid_tm.json"
+      },
+      "assetMeta": {
+        "microField": {
+          "path": "/data/micro_field/gyroid_tm.json",
+          "bytes": 149299,
+          "sha256": "45999f8f060753e71ed0d661e7b81cea4d3c9024fb428f3b4e0502563ad650ed",
+          "kind": "microField",
+          "isSynthetic": true
+        },
+        "portField": {
+          "path": "/data/port_field/gyroid_tm.json",
+          "bytes": 49028,
+          "sha256": "f62a14574cafd707ba3ee24725d2bf32559ea6ee28da5d285d6cdaf041cde611",
+          "kind": "portField",
+          "isSynthetic": true
+        },
+        "sParameters": {
+          "path": "/data/s_parameters/gyroid_tm.json",
+          "bytes": 5305,
+          "sha256": "441cd2e04a25e16e000e1e38b386b477de90453ca3740e6d0675d410bd98e3b7",
+          "kind": "sParameters",
+          "isSynthetic": true
+        },
+        "effectiveTensor": {
+          "path": "/data/effective_tensor/gyroid_tm.json",
+          "bytes": 6450,
+          "sha256": "09dba50466402688f8441a00343f3ff72d59cc267a10b86c522078e32dbd92eb",
+          "kind": "effectiveTensor",
+          "isSynthetic": true
+        },
+        "surfaceCurrent": {
+          "path": "/data/surface_current/gyroid_tm.json",
+          "bytes": 60288,
+          "sha256": "270a1ef69d4cfb57171c54a1b92d8f9c0ed02d9b59f972bae39c10201b6eee49",
+          "kind": "surfaceCurrent",
+          "isSynthetic": true
+        },
+        "rcs": {
+          "path": "/data/rcs/gyroid_tm.json",
+          "bytes": 7028,
+          "sha256": "d9f8b94a3203df852dee84bfbab0ac347f23dfda80c48b87056de2c9d567a6ff",
+          "kind": "rcs",
+          "isSynthetic": true
+        }
+      }
+    },
+    {
+      "id": "diamond-te",
+      "structure": "Diamond",
+      "polarization": "TE",
+      "material": "M5-demo",
+      "incidentAngleDeg": 0.0,
+      "nominalFrequencyGHz": 10.0,
+      "isSynthetic": true,
+      "assets": {
+        "microField": "/data/micro_field/diamond_te.json",
+        "portField": "/data/port_field/diamond_te.json",
+        "sParameters": "/data/s_parameters/diamond_te.json",
+        "effectiveTensor": "/data/effective_tensor/diamond_te.json",
+        "surfaceCurrent": "/data/surface_current/diamond_te.json",
+        "rcs": "/data/rcs/diamond_te.json"
+      },
+      "assetMeta": {
+        "microField": {
+          "path": "/data/micro_field/diamond_te.json",
+          "bytes": 149978,
+          "sha256": "6fbbdd509c6b5a6fd9af3cb7ca64b058f0cecbe97ab58137eb7967324136b63a",
+          "kind": "microField",
+          "isSynthetic": true
+        },
+        "portField": {
+          "path": "/data/port_field/diamond_te.json",
+          "bytes": 49182,
+          "sha256": "3e7139de46805a141ec687a59ac8ec9c369492efb740391db1ee4b8b87097ffc",
+          "kind": "portField",
+          "isSynthetic": true
+        },
+        "sParameters": {
+          "path": "/data/s_parameters/diamond_te.json",
+          "bytes": 5304,
+          "sha256": "858bb3337fd306c21ef88b18e723bf4d7fb78bf8c30438061f700cc45b68486c",
+          "kind": "sParameters",
+          "isSynthetic": true
+        },
+        "effectiveTensor": {
+          "path": "/data/effective_tensor/diamond_te.json",
+          "bytes": 6469,
+          "sha256": "c9d72071d4bff2aaf29388565889c2446f35a147b53ddeb19ed3d72d04f97a1b",
+          "kind": "effectiveTensor",
+          "isSynthetic": true
+        },
+        "surfaceCurrent": {
+          "path": "/data/surface_current/diamond_te.json",
+          "bytes": 57673,
+          "sha256": "e96fcff56781d1213a990016315105867ef49b4ef71da7ef273f3999fabbea22",
+          "kind": "surfaceCurrent",
+          "isSynthetic": true
+        },
+        "rcs": {
+          "path": "/data/rcs/diamond_te.json",
+          "bytes": 7030,
+          "sha256": "9e51062620bbec6aaab406b6b460d6119c8c6eeb46c6f8cdfa80d2ef4706242a",
+          "kind": "rcs",
+          "isSynthetic": true
+        }
+      }
+    },
+    {
+      "id": "diamond-tm",
+      "structure": "Diamond",
+      "polarization": "TM",
+      "material": "M5-demo",
+      "incidentAngleDeg": 0.0,
+      "nominalFrequencyGHz": 10.0,
+      "isSynthetic": true,
+      "assets": {
+        "microField": "/data/micro_field/diamond_tm.json",
+        "portField": "/data/port_field/diamond_tm.json",
+        "sParameters": "/data/s_parameters/diamond_tm.json",
+        "effectiveTensor": "/data/effective_tensor/diamond_tm.json",
+        "surfaceCurrent": "/data/surface_current/diamond_tm.json",
+        "rcs": "/data/rcs/diamond_tm.json"
+      },
+      "assetMeta": {
+        "microField": {
+          "path": "/data/micro_field/diamond_tm.json",
+          "bytes": 148911,
+          "sha256": "ad95726377d9d95d21d388a4f866a4c2ca53dac5140a1f42a021b83ad11d3f1e",
+          "kind": "microField",
+          "isSynthetic": true
+        },
+        "portField": {
+          "path": "/data/port_field/diamond_tm.json",
+          "bytes": 48987,
+          "sha256": "1e3b1e796633633e0bcc840694c125243e122c65a08a145203ce3ed2c441b282",
+          "kind": "portField",
+          "isSynthetic": true
+        },
+        "sParameters": {
+          "path": "/data/s_parameters/diamond_tm.json",
+          "bytes": 5302,
+          "sha256": "81f798abc3eaac781e6c3332c2d7e52d29754685f1bc81e70db990e77113c29f",
+          "kind": "sParameters",
+          "isSynthetic": true
+        },
+        "effectiveTensor": {
+          "path": "/data/effective_tensor/diamond_tm.json",
+          "bytes": 6469,
+          "sha256": "6a7e43a3d66d41614209e656eb47877b42b93bce6f4fb7740e5bfffc3d884e6b",
+          "kind": "effectiveTensor",
+          "isSynthetic": true
+        },
+        "surfaceCurrent": {
+          "path": "/data/surface_current/diamond_tm.json",
+          "bytes": 60272,
+          "sha256": "7050e45c03008008332748eb99fb901412652030662659dd02008dc3789d6804",
+          "kind": "surfaceCurrent",
+          "isSynthetic": true
+        },
+        "rcs": {
+          "path": "/data/rcs/diamond_tm.json",
+          "bytes": 7025,
+          "sha256": "04850ec1ee6346a4e2971fedf5165f3e1808397a25a856c99a98d42812a4e0f0",
+          "kind": "rcs",
+          "isSynthetic": true
+        }
+      }
+    },
+    {
+      "id": "primitive-te",
+      "structure": "Primitive",
+      "polarization": "TE",
+      "material": "M5-demo",
+      "incidentAngleDeg": 0.0,
+      "nominalFrequencyGHz": 10.0,
+      "isSynthetic": true,
+      "assets": {
+        "microField": "/data/micro_field/primitive_te.json",
+        "portField": "/data/port_field/primitive_te.json",
+        "sParameters": "/data/s_parameters/primitive_te.json",
+        "effectiveTensor": "/data/effective_tensor/primitive_te.json",
+        "surfaceCurrent": "/data/surface_current/primitive_te.json",
+        "rcs": "/data/rcs/primitive_te.json"
+      },
+      "assetMeta": {
+        "microField": {
+          "path": "/data/micro_field/primitive_te.json",
+          "bytes": 150537,
+          "sha256": "cd38ee296e64b28c876460099847f98f8e852cd47060bded7ca41fd135aee204",
+          "kind": "microField",
+          "isSynthetic": true
+        },
+        "portField": {
+          "path": "/data/port_field/primitive_te.json",
+          "bytes": 49208,
+          "sha256": "535dc85e829c532ff0bd481c91999342218a8c0389b9e28e73260543ce0f3e58",
+          "kind": "portField",
+          "isSynthetic": true
+        },
+        "sParameters": {
+          "path": "/data/s_parameters/primitive_te.json",
+          "bytes": 5292,
+          "sha256": "0353bf6953b9a353cbb2152f576035136a870d6e566242185627b8f1aa1d747f",
+          "kind": "sParameters",
+          "isSynthetic": true
+        },
+        "effectiveTensor": {
+          "path": "/data/effective_tensor/primitive_te.json",
+          "bytes": 6429,
+          "sha256": "4b73d78bc4c3f676251766151d4419ae3a450e24d759d2f768fa200e47a0c4cc",
+          "kind": "effectiveTensor",
+          "isSynthetic": true
+        },
+        "surfaceCurrent": {
+          "path": "/data/surface_current/primitive_te.json",
+          "bytes": 57675,
+          "sha256": "acd0c9e0d3875e6dbd4b41c6d5f3870917a828ab40ee913e445f19def45115a9",
+          "kind": "surfaceCurrent",
+          "isSynthetic": true
+        },
+        "rcs": {
+          "path": "/data/rcs/primitive_te.json",
+          "bytes": 7041,
+          "sha256": "dd955f99c0be15148633c391325bce1c2240cfc920bd68572a3def78704b885b",
+          "kind": "rcs",
+          "isSynthetic": true
+        }
+      }
+    },
+    {
+      "id": "primitive-tm",
+      "structure": "Primitive",
+      "polarization": "TM",
+      "material": "M5-demo",
+      "incidentAngleDeg": 0.0,
+      "nominalFrequencyGHz": 10.0,
+      "isSynthetic": true,
+      "assets": {
+        "microField": "/data/micro_field/primitive_tm.json",
+        "portField": "/data/port_field/primitive_tm.json",
+        "sParameters": "/data/s_parameters/primitive_tm.json",
+        "effectiveTensor": "/data/effective_tensor/primitive_tm.json",
+        "surfaceCurrent": "/data/surface_current/primitive_tm.json",
+        "rcs": "/data/rcs/primitive_tm.json"
+      },
+      "assetMeta": {
+        "microField": {
+          "path": "/data/micro_field/primitive_tm.json",
+          "bytes": 149536,
+          "sha256": "2629b3a0beba168ebfcd8a8901ec3ddf6303ec180e1bc94f638d0b90065d66ce",
+          "kind": "microField",
+          "isSynthetic": true
+        },
+        "portField": {
+          "path": "/data/port_field/primitive_tm.json",
+          "bytes": 49039,
+          "sha256": "7398afaf36e43536ac55593d44314be1d15ac8de87b33174398be3145874ddf2",
+          "kind": "portField",
+          "isSynthetic": true
+        },
+        "sParameters": {
+          "path": "/data/s_parameters/primitive_tm.json",
+          "bytes": 5278,
+          "sha256": "db08156a07565070abfa057ddc7cb889e178f817cbc6df76f73a8b9f6e6f2aaf",
+          "kind": "sParameters",
+          "isSynthetic": true
+        },
+        "effectiveTensor": {
+          "path": "/data/effective_tensor/primitive_tm.json",
+          "bytes": 6429,
+          "sha256": "118d2e70f2e425486b495afd6d9cf77066dab759025c58fb3d90d10d6293296d",
+          "kind": "effectiveTensor",
+          "isSynthetic": true
+        },
+        "surfaceCurrent": {
+          "path": "/data/surface_current/primitive_tm.json",
+          "bytes": 60280,
+          "sha256": "35094ec61d9f32c9f99f250e608fc2af29f9d2a56cd09d0d038f56b394fd1b28",
+          "kind": "surfaceCurrent",
+          "isSynthetic": true
+        },
+        "rcs": {
+          "path": "/data/rcs/primitive_tm.json",
+          "bytes": 7051,
+          "sha256": "5ec271c5f14a43c8862083cbda0785ae7d1c7b2666c79315d5f67c7e0f20ca98",
+          "kind": "rcs",
+          "isSynthetic": true
+        }
+      }
+    }
+  ],
+  "realDatasets": [
+    {
+      "id": "cst-honeycomb-smoke-reflection",
+      "label": "Verified CST honeycomb smoke reflection cache",
+      "datasetType": "cstFloquetReflectionCurve",
+      "quantity": "PEC-backed co-polar Floquet reflection coefficient",
+      "isSynthetic": false,
+      "scopeWarning": "Only this PEC-backed honeycomb co-polar reflection curve is verified CST output. It is not a complete TPMS-to-RCS case, contains no transmission/S21, and does not make the synthetic TPMS, field, tensor, surface-current, or RCS assets real.",
+      "dataPath": "/data/real/cst_honeycomb_smoke.csv",
+      "provenancePath": "/data/real/cst_honeycomb_smoke.provenance.json",
+      "bytes": 79795,
+      "sha256": "5532b11ce664bfa5c11dd1d9483fb6e220c91297ce85fdb92c608defc0bb91de",
+      "sampleCount": 1001,
+      "frequencyRangeGHz": [
+        8.0,
+        12.0
+      ],
+      "polarizations": [
+        "TE",
+        "TM"
+      ]
+    }
+  ]
+}

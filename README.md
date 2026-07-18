@@ -1,6 +1,6 @@
-# ZhichengFeng-Stealth-lab Pages shell
+# AI Stealth Lab — GitHub Pages
 
-This repository publishes only a full-window presentation shell for the already-public interactive site. It intentionally contains no project source code, simulation inputs, CAD source, or credentials.
+This repository publishes the complete static browser build of AI Stealth Lab. It is self-contained and does not use a ChatGPT/Sites iframe or require a GPT account.
 
 Expected public address:
 
