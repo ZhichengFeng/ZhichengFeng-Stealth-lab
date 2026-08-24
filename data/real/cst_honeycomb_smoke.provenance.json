@@ -42,10 +42,10 @@
     "subscriptNote": "The CST S-parameter subscripts identify ports/Floquet modes; they are not themselves polarization labels."
   },
   "geometry_parameters_status": "missing",
-  "geometry_parameters_note": "????????????",
+  "geometry_parameters_note": "Geometry parameters were not recorded in the source job.",
   "geometryParameters": {
     "status": "missing",
-    "note": "????????????"
+    "note": "Geometry parameters were not recorded in the source job."
   },
   "job": {
     "jobId": "20260715_202951_smoke_e9da04",
@@ -58,7 +58,7 @@
     "error": ""
   },
   "projectSource": {
-    "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick.cst",
+    "path": "cst-job/20260715_202951_smoke_e9da04/honeycomb_quick.cst",
     "bytes": 43759,
     "sha256": "c8f14f1c9a6d900d81f988ca06bcefa334e7c8a5317d4ba05095a0af966a6ed5"
   },
@@ -67,7 +67,7 @@
       "polarization": "TE",
       "format": "dB",
       "treeItem": "1D Results\\S-Parameters\\SZmax(1),Zmax(1)",
-      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TE_dB.txt",
+      "path": "cst-job/20260715_202951_smoke_e9da04/honeycomb_quick_TE_dB.txt",
       "bytes": 58196,
       "sha256": "d36bc1567f83c5d40417cc72cda633ba15bb269ef0a6448bc33bc2862074bac4"
     },
@@ -75,7 +75,7 @@
       "polarization": "TM",
       "format": "dB",
       "treeItem": "1D Results\\S-Parameters\\SZmax(2),Zmax(2)",
-      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TM_dB.txt",
+      "path": "cst-job/20260715_202951_smoke_e9da04/honeycomb_quick_TM_dB.txt",
       "bytes": 58196,
       "sha256": "3615afb5bc43776347cd594e5cbd7fec86a9814fe66b5c0f79e5635be880a492"
     },
@@ -83,7 +83,7 @@
       "polarization": "TE",
       "format": "real",
       "treeItem": "1D Results\\S-Parameters\\SZmax(1),Zmax(1)",
-      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TE_real.txt",
+      "path": "cst-job/20260715_202951_smoke_e9da04/honeycomb_quick_TE_real.txt",
       "bytes": 58194,
       "sha256": "0797cccf8610a56089e5a64ca03508975943582b236a33c0ee0ca42d60337c2a"
     },
@@ -91,7 +91,7 @@
       "polarization": "TM",
       "format": "real",
       "treeItem": "1D Results\\S-Parameters\\SZmax(2),Zmax(2)",
-      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TM_real.txt",
+      "path": "cst-job/20260715_202951_smoke_e9da04/honeycomb_quick_TM_real.txt",
       "bytes": 58194,
       "sha256": "22745f9728bf7845213612ea5c2f1496e6124595bb25a3363b4c86b9724d3790"
     },
@@ -99,7 +99,7 @@
       "polarization": "TE",
       "format": "imag",
       "treeItem": "1D Results\\S-Parameters\\SZmax(1),Zmax(1)",
-      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TE_imag.txt",
+      "path": "cst-job/20260715_202951_smoke_e9da04/honeycomb_quick_TE_imag.txt",
       "bytes": 58199,
       "sha256": "41307a8ee6c539c2ddf429af8fa7b7db5ec4b9c0102ada867b59e459d4b894d8"
     },
@@ -107,7 +107,7 @@
       "polarization": "TM",
       "format": "imag",
       "treeItem": "1D Results\\S-Parameters\\SZmax(2),Zmax(2)",
-      "path": "D:\\CST_MCP_output\\20260715_202951_smoke_e9da04\\honeycomb_quick_TM_imag.txt",
+      "path": "cst-job/20260715_202951_smoke_e9da04/honeycomb_quick_TM_imag.txt",
       "bytes": 58199,
       "sha256": "11e9f1e71cf9999e90b0c34d0994035202fedf3aeb77436c977b3f3906f1fb1b"
     }
