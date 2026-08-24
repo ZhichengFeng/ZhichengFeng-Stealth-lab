@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="AeroRepair Scan：AI Stealth Lab 的飞机复合材料隐身修复原位近场评估模块。"
+    />
+    <meta name="theme-color" content="#0a2027" />
+    <title>AeroRepair Scan · AI Stealth Lab</title>
+    <link rel="icon" href="../favicon-v2.png" type="image/png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#module-main">跳转到主要内容</a>
+
+    <header class="labbar">
+      <a class="lab-brand" href="../" aria-label="返回 AI Stealth Lab">
+        <span class="lab-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>
+          <strong>AI STEALTH LAB</strong>
+          <small>MICRO → MACRO · STEALTH &amp; REPAIR AGENT</small>
+        </span>
+      </a>
+      <div class="module-identity">
+        <span>MODULE</span>
+        <b>09</b>
+        <i></i>
+        <strong>AEROREPAIR SCAN</strong>
+      </div>
+      <nav class="module-nav" aria-label="模块导航">
+        <a href="#equipment">设备</a>
+        <a href="#workflow">流程</a>
+        <a href="#demo">扫描演示</a>
+        <a href="#principle">原理</a>
+      </nav>
+      <div class="data-status"><i></i> SYNTHETIC DATA</div>
+    </header>
+
+    <main id="module-main">
+      <section class="hero" id="overview" aria-labelledby="hero-title">
+        <img
+          class="hero-image"
+          src="./assets/hero_aircraft_repair.webp"
+          alt="飞机复合材料翼面修复区原位近场扫描概念场景"
+        />
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-scan" aria-hidden="true"><span></span><i></i></div>
+        <div class="hero-content">
+          <p class="eyebrow"><i></i> POST-REPAIR ELECTROMAGNETIC VERIFICATION</p>
+          <h1 id="hero-title">From repair site<br />to <em>RCS evidence</em></h1>
+          <p class="hero-cn">飞机隐身修复效果原位近场评估</p>
+          <p class="hero-lead">
+            以便携式双极化微波探头扫描修复区域，保留多频复数幅相，连接局部修复差异、内部损伤筛查与潜在远场影响。
+          </p>
+          <div class="hero-tags" aria-label="模块能力">
+            <span>原位扫描</span><span>非拆卸检测</span><span>修复质量评价</span><span>内部损伤筛查</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button primary" href="#demo">体验概念扫描 <span>↓</span></a>
+            <a class="button secondary" href="#equipment">查看设备链路 <span>↗</span></a>
+            <a class="button ghost" href="../">返回 Stealth Lab</a>
+          </div>
+        </div>
+        <div class="hero-index" aria-hidden="true">
+          <span>FIELD MODULE</span><strong>09</strong><small>repair verification loop</small>
+        </div>
+        <div class="hero-chain" aria-label="Stealth Lab 扩展链路">
+          <span>RCS DESIGN</span><i>→</i><span>REPAIR</span><i>→</i><span>NEAR FIELD</span><i>→</i><b>ASSESSMENT</b>
+        </div>
+      </section>
+
+      <aside class="integrity-note" role="note">
+        <span class="integrity-icon">i</span>
+        <div>
+          <strong>概念演示 · 当前结果为确定性合成数据</strong>
+          <p>不连接真实仪器，不构成维修放行、适航判断、检测精度或整机绝对 RCS 结论。</p>
+        </div>
+        <span class="integrity-code">SAFEGUARD / ARS-01</span>
+      </aside>
+
+      <section class="section bridge-section">
+        <div class="section-head split">
+          <div>
+            <p class="section-kicker">CLOSE THE STEALTH LIFE-CYCLE LOOP</p>
+            <h2>把“设计—制造—修复—验证”连成闭环</h2>
+          </div>
+          <p>
+            Stealth Lab 原有八阶段链路解释微观结构如何影响整机 RCS；AeroRepair Scan 作为第九模块，补充结构服役与修复后的现场验证环节。
+          </p>
+        </div>
+        <div class="bridge-grid">
+          <article><span>01</span><b>DESIGN</b><strong>跨尺度隐身设计</strong><p>TPMS、等效张量、前缘铺设、表面电流与远场 RCS。</p></article>
+          <i>→</i>
+          <article><span>02</span><b>REPAIR</b><strong>复合材料修复</strong><p>表面几何、胶层和蜂窝芯状态共同影响局部电磁响应。</p></article>
+          <i>→</i>
+          <article class="active"><span>03</span><b>VERIFY</b><strong>原位近场验证</strong><p>扫描修复区与周边完好蒙皮，形成差分近场证据。</p></article>
+          <i>→</i>
+          <article><span>04</span><b>UPDATE</b><strong>参考状态更新</strong><p>将复核结果反馈至数字孪生、工艺记录与后续设计。</p></article>
+        </div>
+      </section>
+
+      <section class="section muted" id="equipment">
+        <div class="section-head split">
+          <div>
+            <p class="section-kicker">SYSTEM ARCHITECTURE</p>
+            <h2>核心设备组成</h2>
+          </div>
+          <p>两类主设备负责相干采集，位姿、边缘计算和参考数据库提供几何、处理与证据链支撑。</p>
+        </div>
+
+        <div class="hardware-grid">
+          <article class="hardware-card">
+            <div class="hardware-visual">
+              <span class="hardware-label"><i></i> PRIMARY HARDWARE · 01</span>
+              <img src="./assets/microwave_probe_product.webp" alt="高质量双极化微波近场扫描探头概念外观" loading="lazy" />
+              <small>NEAR-FIELD ACQUISITION</small>
+            </div>
+            <div class="hardware-copy">
+              <span class="number">01</span>
+              <div><b>MICROWAVE PROBE</b><h3>双极化微波探头</h3><p>发射并接收宽带相干响应，支持正交或共/交极化概念测量，覆盖修补区及周边完好蒙皮。</p></div>
+            </div>
+          </article>
+
+          <article class="hardware-card">
+            <div class="hardware-visual">
+              <span class="hardware-label"><i></i> PRIMARY HARDWARE · 02</span>
+              <img src="./assets/portable_vna_product.webp" alt="高质量便携式矢量网络分析仪概念外观" loading="lazy" />
+              <small>COMPLEX S-PARAMETERS</small>
+            </div>
+            <div class="hardware-copy">
+              <span class="number">02</span>
+              <div><b>VECTOR NETWORK ANALYZER</b><h3>便携式矢量网络分析仪</h3><p>获取宽频复数 S 参数，在扫描链路中同步保留幅值与相位，为差分近场分析提供数据基础。</p></div>
+            </div>
+          </article>
+        </div>
+
+        <figure class="aircraft-scene">
+          <img src="./assets/aircraft_wing_scan_scene.webp" alt="飞机复合材料机翼与椭圆修补区的清晰原位扫描场景" loading="lazy" />
+          <figcaption>
+            <span><b>SCAN TARGET / AIRCRAFT SKIN</b><strong>飞机复合材料翼面 · 原位扫描场景</strong></span>
+            <small>通用概念机型 · 非工程图</small>
+          </figcaption>
+          <div class="scene-legend"><span><i></i> 扫描网格</span><span><i></i> 局部异常响应</span></div>
+        </figure>
+
+        <div class="support-grid">
+          <article><span>MODULE 03</span><h3>位姿与距离感知</h3><p>跟踪探头位置、方向和离表距离，为曲面扫描、坐标映射与相位修正提供基准。</p></article>
+          <article><span>MODULE 04</span><h3>边缘计算终端</h3><p>完成扫描控制、实时热图、快速分析与结果显示，承接现场人机协同。</p></article>
+          <article><span>MODULE 05</span><h3>数字孪生与参考数据库</h3><p>保存完好参考状态，关联修复差异与潜在远场影响，并记录证据版本。</p></article>
+        </div>
+      </section>
+
+      <section class="section" id="workflow">
+        <div class="section-head split">
+          <div><p class="section-kicker">FIELD WORKFLOW</p><h2>从参考状态到复核建议</h2></div>
+          <p>流程强调复数幅相、参考状态、局部到整体的证据传递，以及微波筛查与超声复核的职责边界。</p>
+        </div>
+        <ol class="workflow">
+          <li><span>01</span><b>REFERENCE</b><strong>导入参考状态</strong><p>完好测量、历史基准或数字孪生版本。</p></li>
+          <li><span>02</span><b>CALIBRATE</b><strong>现场校准</strong><p>背景扣除、探头校准与状态检查。</p></li>
+          <li><span>03</span><b>SCAN</b><strong>人机协同扫描</strong><p>覆盖修补区与周边完好蒙皮。</p></li>
+          <li><span>04</span><b>RECONSTRUCT</b><strong>复数近场重建</strong><p>幅相、位姿与曲面信息对齐。</p></li>
+          <li><span>05</span><b>INFER</b><strong>双任务评估</strong><p>修复效果评价与内部损伤筛查。</p></li>
+          <li><span>06</span><b>REPORT</b><strong>影响与复核报告</strong><p>潜在 RCS 趋势、证据状态与复核建议。</p></li>
+        </ol>
+      </section>
+
+      <section class="section demo-section" id="demo">
+        <div class="section-head split">
+          <div><p class="section-kicker">INTERACTIVE CONCEPT SCAN</p><h2>原位扫描概念演示</h2></div>
+          <p>使用与原 Gradio 版本一致的六种场景和控制范围，在浏览器内生成可复现的静态站点模拟结果。</p>
+        </div>
+
+        <div class="demo-shell">
+          <form class="controls" id="scan-form">
+            <label>
+              <span>场景选择 <small>SCENARIO</small></span>
+              <select id="scene-input" name="scene"></select>
+            </label>
+            <label>
+              <span>频率 <small>FREQUENCY</small><output id="frequency-output">10.0 GHz</output></span>
+              <input id="frequency-input" name="frequency" type="range" min="2" max="18" value="10" step="0.5" />
+            </label>
+            <fieldset>
+              <legend>极化 <small>POLARIZATION</small></legend>
+              <div class="segmented">
+                <label><input type="radio" name="polarization" value="水平" checked /><span>水平 H</span></label>
+                <label><input type="radio" name="polarization" value="垂直" /><span>垂直 V</span></label>
+              </div>
+            </fieldset>
+            <label>
+              <span>探头离表距离 <small>STANDOFF</small><output id="distance-output">50 mm</output></span>
+              <input id="distance-input" name="distance" type="range" min="20" max="100" value="50" step="5" />
+            </label>
+            <div class="control-actions">
+              <button class="scan-button" type="submit"><span class="scan-icon"></span>开始概念扫描</button>
+              <button class="reset-button" id="reset-button" type="button">重置</button>
+            </div>
+            <div class="case-note" id="case-note"></div>
+          </form>
+
+          <div class="scan-workspace">
+            <div class="scan-status" aria-live="polite">
+              <span><i></i><strong id="scan-state">扫描就绪</strong></span>
+              <b id="scan-percent">100%</b>
+            </div>
+            <div class="progress-track"><i id="progress-bar"></i></div>
+            <div class="visual-panel">
+              <div class="visual-head"><span>COMPLEX NEAR-FIELD DIFFERENCE</span><small>归一化坐标 · 模拟 Δ|E|</small></div>
+              <canvas id="heatmap-canvas" width="960" height="520" aria-label="复数近场差分热图"></canvas>
+              <div class="color-scale" aria-hidden="true"><span>0</span><i></i><span>100</span></div>
+            </div>
+          </div>
+
+          <aside class="metrics" aria-live="polite">
+            <div class="metrics-head"><span>ASSESSMENT</span><b>模拟结果</b></div>
+            <article><small>NEAR-FIELD DEVIATION</small><span>近场差异指数</span><strong id="metric-nf">—</strong><em>模拟归一化指标</em></article>
+            <article><small>ANOMALY AREA</small><span>异常区域估计</span><strong id="metric-area">—</strong><em id="metric-location">—</em></article>
+            <article><small>DAMAGE LIKELIHOOD</small><span>内部损伤概率</span><strong id="metric-damage">—</strong><em>概念模型显示值</em></article>
+            <article><small>ESTIMATED RCS IMPACT</small><span>最大潜在增量</span><strong id="metric-rcs">—</strong><em id="metric-risk">—</em></article>
+            <article><small>ASSESSMENT</small><span>综合提示</span><strong id="metric-evaluation">—</strong><em>不构成工程判定</em></article>
+            <article><small>CONFIDENCE</small><span>内部置信度</span><strong id="metric-confidence">—</strong><em>仅表示规则一致性</em></article>
+          </aside>
+        </div>
+
+        <article class="summary-card" id="summary-card">
+          <div><span>FIELD NOTE / SYNTHETIC</span><h3 id="summary-title">概念评估摘要</h3></div>
+          <p id="summary-text"></p>
+          <p class="summary-action" id="summary-action"></p>
+        </article>
+      </section>
+
+      <section class="section muted" id="principle">
+        <div class="section-head split">
+          <div><p class="section-kicker">PHYSICAL BASIS</p><h2>局部证据如何连接远场影响</h2></div>
+          <p>公式用于解释证据链，不公开具体校准算子、探头参数、反演权重或工程阈值。</p>
+        </div>
+        <div class="principle-grid">
+          <details open><summary><span>01</span>局部阻抗与反射</summary><p class="formula">Γᵖ = (Zᵢₙᵖ − Z₀ᵖ) / (Zᵢₙᵖ + Z₀ᵖ)</p><p>修补材料、胶层、脱粘和蜂窝损伤改变局部输入阻抗，进而改变反射幅值和相位。</p></details>
+          <details><summary><span>02</span>修复差分近场</summary><p class="formula">ΔE<sub>NF</sub> = E<sub>repair</sub> − E<sub>reference</sub></p><p>相对于完好参考状态聚焦新增扰动，避免把复杂整机绝对散射直接归因于单点响应。</p></details>
+          <details><summary><span>03</span>等效表面电流</summary><p class="formula">ΔJ<sub>s</sub> = n̂ × ΔH　·　ΔM<sub>s</sub> = −n̂ × ΔE</p><p>将曲面附近的差分近场转写为等效源，为局部到远场的连接建立桥梁。</p></details>
+          <details><summary><span>04</span>相干远场叠加</summary><p class="formula">E∞<sup>repair</sup> ≈ E∞<sup>intact</sup> + ΔE∞<sup>local</sup></p><p>保留复数相位，使局部修复散射与其他散射中心能够相干增强或抵消。</p></details>
+        </div>
+      </section>
+
+      <section class="section boundary-section">
+        <div class="boundary-copy">
+          <p class="section-kicker">MODULE BOUNDARY</p>
+          <h2>快速筛查、证据组织与复核闭环</h2>
+          <p>微波近场扫描用于快速原位筛查和电磁影响辅助评价。需要精确几何定量的内部缺陷，应由经过验证的超声等方法复核。</p>
+        </div>
+        <div class="boundary-cards">
+          <article><span>当前已实现</span><strong>静态站点交互模块</strong><p>六种合成场景、热图、指标、摘要、响应式设备展示。</p></article>
+          <article><span>后续接口</span><strong>真实采集与受控算法</strong><p>VNA、探头、位姿、校准、反演、数字孪生和报告审批。</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a href="../">AI STEALTH LAB</a>
+      <span>AEROREPAIR SCAN · MODULE 09</span>
+      <small>Concept interface · Synthetic data only</small>
+    </footer>
+  </body>
+</html>

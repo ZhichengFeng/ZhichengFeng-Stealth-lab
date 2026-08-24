@@ -1,0 +1,264 @@
+{
+  "schema_version": "1.0",
+  "dataset_name": "AeroRepair Scan conceptual demo cases",
+  "language": "zh-CN",
+  "disclaimer": "本文件仅包含用于网页交互的非敏感合成参数，不来自真实飞机、试件、仪器、仿真数据库或试验标定；所有概率、置信度和 dB 数值均为概念演示量，不能解释为检测精度、性能承诺或工程判据。",
+  "parameter_convention": {
+    "normalized_fields": "除明确标注单位的字段外，数值均为 0–1 的无量纲演示系数。",
+    "coordinates": "anomaly.center 和 anomaly.sigma 使用归一化扫描平面坐标，不对应真实结构尺寸。",
+    "rcs_base": "概念性最大 RCS 增量的显示基值，单位标签为 simulated dB，不代表真实 RCS 或实测结果。",
+    "damage_likelihood": "概念模型内部的显示基值，不是经验证的缺陷概率。",
+    "confidence_base": "仅表示模拟规则在当前演示中的内部一致性，不是统计置信度。"
+  },
+  "grid": {
+    "nx": 80,
+    "ny": 50,
+    "x_range_normalized": [-1.0, 1.0],
+    "y_range_normalized": [-0.625, 0.625],
+    "repair_region": {
+      "shape": "rounded_ellipse",
+      "center": [0.0, 0.0],
+      "semi_axes": [0.46, 0.31]
+    }
+  },
+  "controls": {
+    "frequency_ghz": {
+      "min": 2.0,
+      "max": 18.0,
+      "reference": 10.0
+    },
+    "distance_mm": {
+      "min": 20,
+      "max": 100,
+      "reference": 50
+    },
+    "polarizations": ["水平", "垂直"],
+    "fixed_random_seed": 20260823
+  },
+  "cases": [
+    {
+      "id": "intact_baseline",
+      "display_name": "完好基准",
+      "category": "reference",
+      "description": "仅保留平滑背景起伏与轻微合成测量纹理，用于演示参考状态。",
+      "base_severity": 0.03,
+      "damage_likelihood": 0.02,
+      "rcs_base": 0.02,
+      "confidence_base": 0.78,
+      "frequency_profile": {
+        "mode": "flat",
+        "reference_ghz": 10.0,
+        "slope": 0.02,
+        "ripple_strength": 0.01
+      },
+      "polarization_gain": {
+        "水平": 1.0,
+        "垂直": 0.96
+      },
+      "distance_decay_mm": 72.0,
+      "anomaly": {
+        "shape": "none",
+        "center": [0.0, 0.0],
+        "sigma": [0.22, 0.16],
+        "amplitude": 0.0,
+        "edge_strength": 0.0,
+        "phase_shift_rad": 0.0,
+        "orientation_deg": 0.0,
+        "secondary_lobe": null
+      },
+      "risk_label": "基准",
+      "suggested_action": "作为概念参考状态，不形成工程判定。"
+    },
+    {
+      "id": "ideal_repair",
+      "display_name": "理想修复",
+      "category": "repair",
+      "description": "修补区与参考状态差异较小，用于演示低异常、低潜在影响趋势。",
+      "base_severity": 0.10,
+      "damage_likelihood": 0.06,
+      "rcs_base": 0.16,
+      "confidence_base": 0.76,
+      "frequency_profile": {
+        "mode": "gentle_high_frequency",
+        "reference_ghz": 10.0,
+        "slope": 0.08,
+        "ripple_strength": 0.03
+      },
+      "polarization_gain": {
+        "水平": 1.0,
+        "垂直": 0.92
+      },
+      "distance_decay_mm": 68.0,
+      "anomaly": {
+        "shape": "ellipse",
+        "center": [0.02, -0.01],
+        "sigma": [0.25, 0.17],
+        "amplitude": 0.12,
+        "edge_strength": 0.05,
+        "phase_shift_rad": 0.08,
+        "orientation_deg": -6.0,
+        "secondary_lobe": null
+      },
+      "risk_label": "低",
+      "suggested_action": "概念演示建议：记录并与参考状态复核。"
+    },
+    {
+      "id": "surface_step",
+      "display_name": "表面台阶偏大",
+      "category": "repair_anomaly",
+      "description": "修补边缘出现环带型散射增强，用于演示表面几何不连续对局部散射的影响趋势。",
+      "base_severity": 0.72,
+      "damage_likelihood": 0.28,
+      "rcs_base": 1.42,
+      "confidence_base": 0.72,
+      "frequency_profile": {
+        "mode": "high_frequency_emphasis",
+        "reference_ghz": 10.0,
+        "slope": 0.62,
+        "ripple_strength": 0.08
+      },
+      "polarization_gain": {
+        "水平": 1.12,
+        "垂直": 0.88
+      },
+      "distance_decay_mm": 58.0,
+      "anomaly": {
+        "shape": "elliptic_ring",
+        "center": [0.0, 0.0],
+        "sigma": [0.43, 0.29],
+        "amplitude": 0.82,
+        "edge_strength": 0.92,
+        "phase_shift_rad": 0.34,
+        "orientation_deg": 2.0,
+        "secondary_lobe": {
+          "shape": "edge_arc",
+          "center": [0.25, 0.03],
+          "sigma": [0.16, 0.24],
+          "amplitude_ratio": 0.34
+        }
+      },
+      "risk_label": "高",
+      "suggested_action": "概念演示建议：局部复扫并检查修补边缘。"
+    },
+    {
+      "id": "adhesive_thickness",
+      "display_name": "胶层厚度异常",
+      "category": "internal_anomaly",
+      "description": "设置具有频率敏感性的条带—椭圆复合异常，用于展示胶层变化的概念性响应。",
+      "base_severity": 0.48,
+      "damage_likelihood": 0.62,
+      "rcs_base": 0.76,
+      "confidence_base": 0.66,
+      "frequency_profile": {
+        "mode": "resonant",
+        "reference_ghz": 10.0,
+        "slope": 0.18,
+        "ripple_strength": 0.28,
+        "resonance_ghz": 12.4,
+        "resonance_width_ghz": 3.2
+      },
+      "polarization_gain": {
+        "水平": 0.94,
+        "垂直": 1.08
+      },
+      "distance_decay_mm": 62.0,
+      "anomaly": {
+        "shape": "gaussian_band",
+        "center": [-0.08, 0.03],
+        "sigma": [0.34, 0.10],
+        "amplitude": 0.56,
+        "edge_strength": 0.26,
+        "phase_shift_rad": 0.58,
+        "orientation_deg": 12.0,
+        "secondary_lobe": {
+          "shape": "ellipse",
+          "center": [0.20, -0.08],
+          "sigma": [0.14, 0.12],
+          "amplitude_ratio": 0.30
+        }
+      },
+      "risk_label": "中",
+      "suggested_action": "概念演示建议：关注敏感频段并结合工艺记录复核。"
+    },
+    {
+      "id": "panel_disbond",
+      "display_name": "面板脱粘",
+      "category": "internal_anomaly",
+      "description": "局部双峰幅相异常，用于演示脱粘区域可能形成的集中异常趋势。",
+      "base_severity": 0.67,
+      "damage_likelihood": 0.84,
+      "rcs_base": 1.04,
+      "confidence_base": 0.70,
+      "frequency_profile": {
+        "mode": "broadband_with_phase",
+        "reference_ghz": 10.0,
+        "slope": 0.26,
+        "ripple_strength": 0.16,
+        "resonance_ghz": 9.2,
+        "resonance_width_ghz": 4.6
+      },
+      "polarization_gain": {
+        "水平": 1.04,
+        "垂直": 1.12
+      },
+      "distance_decay_mm": 60.0,
+      "anomaly": {
+        "shape": "double_gaussian",
+        "center": [0.12, 0.04],
+        "sigma": [0.20, 0.15],
+        "amplitude": 0.76,
+        "edge_strength": 0.42,
+        "phase_shift_rad": 0.74,
+        "orientation_deg": -18.0,
+        "secondary_lobe": {
+          "shape": "ellipse",
+          "center": [-0.16, -0.06],
+          "sigma": [0.14, 0.11],
+          "amplitude_ratio": 0.62
+        }
+      },
+      "risk_label": "高",
+      "suggested_action": "概念演示建议：标记异常区并安排局部超声复核。"
+    },
+    {
+      "id": "honeycomb_crush",
+      "display_name": "蜂窝芯压溃",
+      "category": "internal_anomaly",
+      "description": "较宽的低—中频增强异常，用于展示蜂窝芯受损可能造成的扩展响应趋势。",
+      "base_severity": 0.61,
+      "damage_likelihood": 0.79,
+      "rcs_base": 0.90,
+      "confidence_base": 0.68,
+      "frequency_profile": {
+        "mode": "low_mid_frequency_emphasis",
+        "reference_ghz": 8.0,
+        "slope": -0.34,
+        "ripple_strength": 0.12,
+        "resonance_ghz": 6.8,
+        "resonance_width_ghz": 4.0
+      },
+      "polarization_gain": {
+        "水平": 1.08,
+        "垂直": 0.98
+      },
+      "distance_decay_mm": 66.0,
+      "anomaly": {
+        "shape": "broad_ellipse",
+        "center": [-0.03, -0.02],
+        "sigma": [0.42, 0.25],
+        "amplitude": 0.69,
+        "edge_strength": 0.20,
+        "phase_shift_rad": 0.46,
+        "orientation_deg": 8.0,
+        "secondary_lobe": {
+          "shape": "diffuse_patch",
+          "center": [0.30, 0.10],
+          "sigma": [0.20, 0.17],
+          "amplitude_ratio": 0.28
+        }
+      },
+      "risk_label": "高",
+      "suggested_action": "概念演示建议：扩大复扫范围并安排局部超声复核。"
+    }
+  ]
+}
