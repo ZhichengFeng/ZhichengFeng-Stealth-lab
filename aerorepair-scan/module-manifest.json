@@ -1,0 +1,18 @@
+{
+  "id": "aerorepair-scan",
+  "name": "AeroRepair Scan",
+  "lab_module": 9,
+  "role": "post-repair electromagnetic verification",
+  "data_classification": "synthetic demonstration data",
+  "source_baseline": {
+    "workspace": "AeroRepair_Scan",
+    "modelscope_commit": "0e8ec791",
+    "app_sha256": "49DB6E9D89A63FB1F77DF26B1052BAD1344362540EEFBF4C7A207149952D2ABE"
+  },
+  "static_port": {
+    "runtime": "browser-native HTML/CSS/JavaScript",
+    "backend_required": false,
+    "scenarios": 6,
+    "controls": ["scenario", "frequency", "polarization", "standoff_distance"]
+  }
+}
