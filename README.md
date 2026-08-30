@@ -1,8 +1,31 @@
 # AI Stealth Lab · 跨尺度电磁科研实验室
 
-**From Microstructure to Aircraft RCS** 是一个可运行、可交互、可录制的跨尺度电磁科研展示项目。它把 TPMS 微观结构、电磁场与端口响应、等效材料参数、部件铺设、表面电流和远场 RCS 组织到同一条可视化链路中，帮助用户理解微观设计如何逐级影响宏观电磁散射。
+**From Microstructure to Aircraft RCS**
 
-在线访问：[AI Stealth Lab · GitHub Pages](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/)
+[![GitHub Pages](https://img.shields.io/badge/demo-live-brightgreen)](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/)
+[![Status](https://img.shields.io/badge/status-work--in--progress-orange)](#roadmap)
+[![Stack](https://img.shields.io/badge/stack-React%2019%20%C2%B7%20Three.js%20%C2%B7%20TypeScript%20%C2%B7%20Python-blue)](#技术栈)
+[![Data](https://img.shields.io/badge/data-synthetic%20%2B%20verified%20CST-lightgrey)](#数据与产品边界)
+
+![AI Stealth Lab](og.png)
+
+**在线演示**：[主实验室](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/) ｜ [无人值守演示 `/demo/`](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/demo/) ｜ [AeroRepair Scan](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/aerorepair-scan/)
+
+> **English.** *AI Stealth Lab* is a runnable, interactive cross-scale electromagnetics showcase that links TPMS microstructures, unit-cell fields, port responses, S-parameters, retrieved effective material tensors, component layouts, surface currents and far-field RCS in one continuous visual chain. It ships with a ~30 s auto-play demo, six deterministic synthetic TPMS→RCS cases (Gyroid / Diamond / Primitive × TE / TM), a verified CST honeycomb reflection reference (8–12 GHz), the **AbsorbEvo** inverse-design workbench, and the **AeroRepair Scan** in-situ repair-assessment module. The project is under active development; a paper is in preparation.
+
+## 目录
+
+- [项目功能](#项目功能)
+- [界面与参考几何](#界面与参考几何)
+- [跨尺度链路](#跨尺度链路)
+- [AeroRepair Scan 原位评估](#aerorepair-scan-原位评估)
+- [AbsorbEvo 逆向设计](#absorbevo-逆向设计)
+- [技术栈](#技术栈)
+- [当前界面](#当前界面)
+- [数据与产品边界](#数据与产品边界)
+- [本地预览](#本地预览)
+- [部署](#部署)
+- [Roadmap](#roadmap)
 
 ## 项目功能
 
@@ -14,6 +37,18 @@
 - 提供 CST 独立参考数据入口，并在界面中明确区分真实数据、合成演示数据和预留求解接口；
 - 集成 **AbsorbEvo** 逆向设计工作台，用证据受控的方式诊断现有吸波结构，并提出下一步值得验证的改进方向；
 - 集成 **AeroRepair Scan** 原位评估模块，把设计端的整机 RCS 链路延伸到修复后的近场扫描、缺陷定位与质量评估。
+
+## 界面与参考几何
+
+| Gyroid | Diamond | Primitive |
+| :---: | :---: | :---: |
+| ![Gyroid TPMS](reference/tpms-gyroid.png) | ![Diamond TPMS](reference/tpms-diamond.png) | ![Primitive TPMS](reference/tpms-primitive.png) |
+
+| 前缘 TPMS 铺设细节 | 前缘均质化视图 | CST 吸波蜂窝参考 |
+| :---: | :---: | :---: |
+| ![前缘 TPMS 细节](reference/leading-edge-tpms-detail.png) | ![前缘均质化](reference/leading-edge-homogenized.png) | ![吸波蜂窝](reference/absorbing-honeycomb.png) |
+
+> 动态演示见 [无人值守演示页面](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/demo/)（约 30 秒一镜到底，可直接用于录屏）。
 
 ## 跨尺度链路
 
@@ -72,6 +107,16 @@ AbsorbEvo 让 Stealth Lab 从“展示计算结果”进一步走向“思考下
 - `/demo/` 无人值守演示页面，可用于录制与展示。
 - `/aerorepair-scan/` 修复后原位扫描与质量评估页面。
 
+## 数据与产品边界
+
+| 对象 | 性质 | 说明 |
+| --- | --- | --- |
+| 六个完整的 TPMS → RCS 案例 | 合成演示数据 | 确定性合成，用于展示交互、数据结构和跨尺度工作流，不能据此声称获得了真实整机 RCS |
+| CST 吸波蜂窝共极化反射缓存 | 真实仿真参考 | 覆盖 8–12 GHz、共 1,001 个频点，包含 TE / TM 反射；不包含 S21，也不构成完整的 TPMS → RCS 链路 |
+| 网页中的 TPMS、前缘与整机对象 | 轻量化程序表示 | 依据参考几何构建，并非与 CST 网格逐顶点一致 |
+| AbsorbEvo | 证据受控的设计推理 | 提供可验证假设，不替代 CST 求解，也不会把未经验证的候选描述为整机 RCS 提升 |
+| AeroRepair Scan | 概念验证级合成数据 | 用于说明近场扫描流程、交互与数据结构，不替代经校准仪器测量、无损检测判读或适航认证 |
+
 ## 本地预览
 
 本仓库保存的是 GitHub Pages 静态发布版本。请保留默认目录名 `ZhichengFeng-Stealth-lab`，在它的上一级目录运行：
@@ -87,14 +132,17 @@ http://127.0.0.1:3000/ZhichengFeng-Stealth-lab/
 http://127.0.0.1:3000/ZhichengFeng-Stealth-lab/aerorepair-scan/
 ```
 
-## 数据与产品边界
-
-- 当前六个完整的 TPMS → RCS 案例是确定性的合成演示数据，用于展示交互、数据结构和跨尺度工作流，不能据此声称获得了真实整机 RCS；
-- 当前真实数值参考为已完成的 CST 吸波蜂窝共极化反射缓存，覆盖 8–12 GHz、共 1,001 个频点，包含 TE / TM 反射，但不包含 S21，也不构成完整的 TPMS → RCS 链路；
-- 网页中的 TPMS、前缘与整机对象是依据参考几何构建的轻量化程序表示，并非与 CST 网格逐顶点一致；
-- AbsorbEvo 当前提供证据受控的设计推理与可验证假设，不替代 CST 求解，也不会把未经验证的候选描述为整机 RCS 提升。
-- AeroRepair Scan 当前输出为概念验证级合成数据，用于说明近场扫描流程、交互与数据结构，不替代经校准仪器测量、无损检测判读或适航认证。
-
 ## 部署
 
 本仓库用于发布 AI Stealth Lab 的 GitHub Pages 静态版本。更新合并到 `main` 分支并完成 GitHub Pages 部署后，公开页面会同步显示最新内容。
+
+## Roadmap
+
+- [x] 跨尺度可视化链路（TPMS 微观胞元 → 远场 RCS，八阶段一镜到底）
+- [x] 六个确定性合成演示案例（3 种 TPMS 结构 × TE / TM 极化）
+- [x] CST 真实参考数据接入（吸波蜂窝共极化反射，8–12 GHz，1,001 频点）
+- [x] AbsorbEvo 逆向设计工作台框架
+- [x] AeroRepair Scan 修复后原位评估模块（Module 09）
+- [ ] 完整 TPMS → RCS 链路的真实仿真验证案例
+- [ ] 更多 CST 求解结果与实测数据接入
+- [ ] 论文撰写与发表（in preparation）
