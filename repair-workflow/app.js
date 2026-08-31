@@ -496,7 +496,7 @@
         labels += `<text x="${cx}" y="${y + 18}" fill="#aecdd3" font-size="12" text-anchor="middle">${p.id}</text>`;
       });
       svg.innerHTML = `
-        <rect x="20" y="96" width="280" height="58" fill="#254958" stroke="rgba(170,235,240,.35)"/>
+        <rect x="20" y="96" width="280" height="58" fill="#123541" stroke="rgba(170,235,240,.35)"/>
         <rect x="20" y="96" width="280" height="7" fill="#8fb4bf"/>
         <line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="rgba(152,225,233,.35)" stroke-dasharray="3 4"/>
         ${dots}${labels}
@@ -661,7 +661,7 @@
       // 修复区
       const repX = (x0 + x1) / 2, repY = (y0 + y1) / 2;
       svg.innerHTML = `
-        <rect x="20" y="86" width="280" height="96" fill="#254958" stroke="rgba(170,235,240,.35)"/>
+        <rect x="20" y="86" width="280" height="96" fill="#123541" stroke="rgba(170,235,240,.35)"/>
         ${grid}
         <ellipse cx="${repX}" cy="${repY}" rx="52" ry="26" fill="none" stroke="#e9a46e" stroke-dasharray="4 3" opacity="0.8"/>
         <text x="${repX}" y="${repY + 3}" fill="#e9a46e" font-size="12" text-anchor="middle">修复/关注区</text>

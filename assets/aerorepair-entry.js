@@ -46,7 +46,7 @@
       font-size:11px;letter-spacing:.04em;text-decoration:none;transition:.18s ease
     }
     .aerorepair-intro-action:hover,.aerorepair-intro-action:focus-visible {background:rgba(42,113,124,.55);transform:translateY(-1px)}
-    @media(max-width:1180px){.top-actions .aerorepair-nav{width:35px;padding:0;justify-content:center;font-size:0}.top-actions .aerorepair-nav span{display:none}}
+    @media(max-width:940px){.top-actions .aerorepair-nav{width:35px;padding:0;justify-content:center;font-size:0}.top-actions .aerorepair-nav span{display:none}}
     @media(max-width:720px){.aerorepair-intro-action{width:100%}}
   `;
   const waitStartedAt = Date.now();

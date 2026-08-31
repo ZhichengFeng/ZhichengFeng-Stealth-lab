@@ -48,7 +48,7 @@
       font-size:11px;letter-spacing:.04em;text-decoration:none;transition:.18s ease
     }
     .repairworkflow-intro-action:hover,.repairworkflow-intro-action:focus-visible {background:rgba(122,84,40,.55);transform:translateY(-1px)}
-    @media(max-width:1180px){.top-actions .repairworkflow-nav{width:35px;padding:0;justify-content:center;font-size:0}.top-actions .repairworkflow-nav span{display:none}}
+    @media(max-width:940px){.top-actions .repairworkflow-nav{width:35px;padding:0;justify-content:center;font-size:0}.top-actions .repairworkflow-nav span{display:none}}
     @media(max-width:720px){.repairworkflow-intro-action{width:100%}}
   `;
   const waitStartedAt = Date.now();
