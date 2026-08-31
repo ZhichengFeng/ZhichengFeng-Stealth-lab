@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "dataset_name": "Repair Workflow damage state definitions",
+  "classification": "概念示意配置 / Conceptual configuration",
+  "disclaimer": "本文件仅定义展示用状态与说明文字，不包含损伤尺寸、冲击能量或力学计算结果。",
+  "specimen": {
+    "type_zh": "吸波蜂窝夹层结构（局部示意）",
+    "type_en": "Absorbing honeycomb sandwich panel (schematic)",
+    "layers_zh": ["上蒙皮", "蜂窝芯", "下蒙皮"],
+    "layers_en": ["upper facesheet", "honeycomb core", "lower facesheet"]
+  },
+  "states": [
+    {
+      "id": "intact",
+      "index": 0,
+      "label_zh": "完好",
+      "label_en": "Intact",
+      "badge_zh": "结构连续 · 芯层完整",
+      "description_zh": "蒙皮连续，蜂窝芯完整。该状态作为无损检测与修复评估的参考基线。",
+      "description_en": "Continuous facesheets with intact honeycomb core. Used as the reference baseline for inspection and repair assessment."
+    },
+    {
+      "id": "impact",
+      "index": 1,
+      "label_zh": "冲击损伤",
+      "label_en": "Impact Damage",
+      "badge_zh": "蒙皮凹陷 · 芯层局部压溃",
+      "description_zh": "上蒙皮局部凹陷或裂纹，内部蜂窝芯局部压溃；外观可能不明显，需依赖无损检测确认内部范围。",
+      "description_en": "Local facesheet indentation or cracking with underlying core crushing; the internal extent may be barely visible and requires NDI."
+    },
+    {
+      "id": "perforation",
+      "index": 2,
+      "label_zh": "穿孔损伤",
+      "label_en": "Perforation",
+      "badge_zh": "贯穿孔洞 · 功能层中断",
+      "description_zh": "结构出现贯穿上蒙皮与芯层的孔洞，同时破坏结构完整性与吸波功能层的连续性。",
+      "description_en": "A through-hole penetrating the facesheet and core, interrupting both structural integrity and the absorbing functional layer."
+    },
+    {
+      "id": "repaired",
+      "index": 3,
+      "label_zh": "修复后",
+      "label_en": "Repaired",
+      "badge_zh": "挖补修理 · 局部构型恢复",
+      "description_zh": "损伤区域经挖补修理：更换蜂窝芯、铺放胶膜与修补层并固化，局部夹层构型得到恢复。",
+      "description_en": "The damaged region is restored by a scarf/patch repair: core replacement, adhesive film and repair plies, followed by curing."
+    }
+  ]
+}

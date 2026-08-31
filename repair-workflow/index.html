@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="损伤检测与修复工作流：AI Stealth Lab 的蜂窝夹层结构损伤展示、超声/电磁无损检测与挖补修复流程演示模块。"
+    />
+    <meta name="theme-color" content="#07171c" />
+    <meta property="og:title" content="损伤检测与修复工作流 · AI Stealth Lab" />
+    <meta property="og:description" content="从损伤状态展示、无损检测到蜂窝夹层结构修复。" />
+    <meta property="og:site_name" content="AI Stealth Lab" />
+    <meta property="og:type" content="website" />
+    <title>损伤检测与修复 · Damage Detection &amp; Repair · AI Stealth Lab</title>
+    <link rel="icon" href="../favicon-v2.png" type="image/png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#module-main">跳转到主要内容</a>
+
+    <!-- ===== 顶栏（与 AeroRepair Scan 一致的语言） ===== -->
+    <header class="labbar">
+      <a class="lab-brand" href="../" aria-label="返回 AI Stealth Lab">
+        <span class="lab-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>
+          <strong>AI STEALTH LAB</strong>
+          <small>MICRO → MACRO · STEALTH &amp; REPAIR AGENT</small>
+        </span>
+      </a>
+      <div class="module-identity">
+        <span>MODULE</span>
+        <b>10</b>
+        <i></i>
+        <strong>REPAIR WORKFLOW</strong>
+      </div>
+      <nav class="module-nav" aria-label="模块导航">
+        <a href="#damage" data-nav="damage">01 损伤</a>
+        <a href="#sense" data-nav="sense">02 超声</a>
+        <a href="#probe" data-nav="probe">03 电磁</a>
+        <a href="#repair" data-nav="repair">04 修复</a>
+      </nav>
+      <div class="data-status"><i></i> DEMONSTRATION DATA</div>
+    </header>
+
+    <!-- ===== 主流程条（点击跳转 + 当前高亮） ===== -->
+    <div class="flowbar" id="flowbar" role="navigation" aria-label="工作流主流程">
+      <div class="flowbar-inner">
+        <button class="flow-node" data-goto="damage" type="button">
+          <span class="fn-num">01</span>
+          <span class="fn-body"><b>Damage</b><small>损伤状态</small></span>
+        </button>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <div class="flow-group" role="group" aria-label="无损检测两条分支">
+          <span class="flow-group-label">无损检测 · NDI</span>
+          <div class="flow-branches">
+            <button class="flow-node branch" data-goto="sense" type="button">
+              <span class="fn-num">02</span>
+              <span class="fn-body"><b>Sense</b><small>超声检测</small></span>
+            </button>
+            <button class="flow-node branch" data-goto="probe" type="button">
+              <span class="fn-num">03</span>
+              <span class="fn-body"><b>Probe</b><small>电磁检测</small></span>
+            </button>
+          </div>
+        </div>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <button class="flow-node" data-goto="repair" type="button">
+          <span class="fn-num">04</span>
+          <span class="fn-body"><b>Repair</b><small>修复流程</small></span>
+        </button>
+        <button class="flow-start" id="start-workflow" type="button" aria-label="按顺序高亮演示">▶ 开始演示</button>
+      </div>
+    </div>
+
+    <main id="module-main">
+      <!-- ===== 页面标题区 ===== -->
+      <section class="page-head" aria-labelledby="page-title">
+        <p class="eyebrow"><i></i> DAMAGE → NDI → REPAIR</p>
+        <h1 id="page-title">Damage Detection <em>and</em> Repair Workflow</h1>
+        <p class="hero-cn">损伤检测与修复工作流</p>
+        <p class="hero-lead">
+          From damage visualization and nondestructive inspection to composite sandwich repair.<br />
+          从损伤状态展示、无损检测到蜂窝夹层结构修复。
+        </p>
+        <div class="page-state" aria-live="polite">
+          当前结构状态：<b id="global-state-label">完好 · Intact</b>
+        </div>
+      </section>
+
+      <aside class="integrity-note" role="note">
+        <span class="integrity-icon">i</span>
+        <div>
+          <strong>演示数据 · 概念演示 / Demonstration data · Concept demonstrator</strong>
+          <p>本页信号与曲线为确定性合成演示数据，用于说明判读流程；不构成检测精度、修复质量或适航结论。</p>
+        </div>
+        <span class="integrity-code">SAFEGUARD / RW-10</span>
+      </aside>
+
+      <!-- ================= 模块 01 Damage ================= -->
+      <section class="module" id="damage" data-module="damage" aria-labelledby="damage-title">
+        <div class="module-head">
+          <div class="module-id"><span>01</span><b>DAMAGE</b></div>
+          <div>
+            <p class="section-kicker">损伤状态展示</p>
+            <h2 id="damage-title">蜂窝夹层结构的损伤背景</h2>
+          </div>
+          <p class="module-desc">
+            冲击和穿孔损伤可能同时影响吸波蜂窝夹层结构的结构完整性与功能性能。本模块首先展示损伤状态，为后续无损检测与修复流程提供背景。
+          </p>
+        </div>
+
+        <div class="module-body two-col">
+          <div class="viewer-panel">
+            <div class="viewer-head">
+              <span id="damage-badge">完好 · Intact</span>
+              <span class="viewer-hint">拖动旋转 · 滚轮缩放</span>
+            </div>
+            <div class="three-holder" id="damage-viewer" aria-label="蜂窝夹层结构三维示意"></div>
+            <div class="state-switch" role="tablist" aria-label="损伤状态切换">
+              <button role="tab" data-state="intact" aria-selected="true" type="button">完好<br /><small>Intact</small></button>
+              <button role="tab" data-state="impact" aria-selected="false" type="button">冲击损伤<br /><small>Impact</small></button>
+              <button role="tab" data-state="perforation" aria-selected="false" type="button">穿孔损伤<br /><small>Perforation</small></button>
+              <button role="tab" data-state="repaired" aria-selected="false" type="button">修复后<br /><small>Repaired</small></button>
+            </div>
+          </div>
+          <div class="side-panel">
+            <h3>状态说明</h3>
+            <p class="state-desc" id="damage-desc"></p>
+            <div class="legend" aria-label="结构组成图例">
+              <div><i class="lg lg-skin"></i> 上 / 下蒙皮</div>
+              <div><i class="lg lg-core"></i> 蜂窝芯</div>
+              <div><i class="lg lg-damage"></i> 损伤区域</div>
+              <div><i class="lg lg-patch"></i> 修补区</div>
+            </div>
+            <p class="note-small">
+              示意为局部剖切模型；仅表现构型与损伤状态，不含应力、损伤尺寸或力学计算。
+            </p>
+            <button class="next-btn" data-next="sense" type="button">下一步：超声无损检测 ↓</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 模块 02 Sense ================= -->
+      <section class="module" id="sense" data-module="sense" aria-labelledby="sense-title">
+        <div class="module-head">
+          <div class="module-id"><span>02</span><b>SENSE</b></div>
+          <div>
+            <p class="section-kicker">无损检测 · 超声</p>
+            <h2 id="sense-title">超声无损检测 <small>Ultrasonic NDT</small></h2>
+          </div>
+          <p class="module-desc">
+            超声无损检测利用弹性波响应识别蜂窝夹层结构内部异常。原始 A-scan 波形与 Hilbert 包络共同用于表征并辅助识别损伤。
+          </p>
+        </div>
+
+        <div class="compare-tag" role="note">
+          <span><b>Sense · 超声</b>弹性波 / A-scan → 内部结构损伤与界面异常</span>
+        </div>
+
+        <div class="module-body three-col">
+          <!-- 扫描动画区 -->
+          <div class="panel">
+            <div class="panel-head">
+              <b>扫描演示</b>
+              <span class="tag-demo">演示数据</span>
+            </div>
+            <svg id="us-scan-svg" viewBox="0 0 320 200" role="img" aria-label="超声探头扫描示意"></svg>
+            <div class="ctrl-row">
+              <button id="us-play" type="button" class="ctl primary">▶ 播放</button>
+              <button id="us-replay" type="button" class="ctl">↺ 重播</button>
+              <label class="ctl-label">测点
+                <select id="us-point"></select>
+              </label>
+            </div>
+          </div>
+
+          <!-- 波形区 -->
+          <div class="panel">
+            <div class="panel-head">
+              <b>A-scan 与 Hilbert 包络</b>
+              <span class="tag-demo">演示数据</span>
+            </div>
+            <canvas id="us-canvas" height="300"></canvas>
+            <div class="axis-note">横轴：时间 (µs) · 纵轴：幅值（归一化）</div>
+          </div>
+
+          <!-- 损伤识别区 -->
+          <div class="panel">
+            <div class="panel-head"><b>测点识别</b></div>
+            <div class="verdict" id="us-verdict">
+              <span class="verdict-label">当前测点</span>
+              <b id="us-point-id">P1</b>
+              <span class="verdict-status" id="us-status">Intact</span>
+            </div>
+            <div class="point-track" id="us-track" aria-label="测点分布"></div>
+            <p class="note-small">
+              识别基于包络特征（附加回波 / 底面回波衰减）的演示判据；仅支持单点 / 稀疏测点判断，未生成 C-scan。
+            </p>
+            <button class="next-btn" data-next="probe" type="button">下一步：电磁无损检测 ↓</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 模块 03 Probe ================= -->
+      <section class="module" id="probe" data-module="probe" aria-labelledby="probe-title">
+        <div class="module-head">
+          <div class="module-id"><span>03</span><b>PROBE</b></div>
+          <div>
+            <p class="section-kicker">无损检测 · 电磁</p>
+            <h2 id="probe-title">电磁无损检测 <small>Electromagnetic NDT</small></h2>
+          </div>
+          <p class="module-desc">
+            电磁无损检测利用波导探头扫描结构局部表面响应。采集的 S 参数经过校准、近场重建和近远场变换后，可用于修复区域的电磁性能评价。
+          </p>
+        </div>
+
+        <div class="compare-tag" role="note">
+          <span><b>Probe · 电磁</b>电磁波 / S 参数 → 局部电磁响应与修复区域电磁一致性</span>
+        </div>
+
+        <div class="module-body three-col">
+          <!-- 探头扫描动画 -->
+          <div class="panel">
+            <div class="panel-head">
+              <b>波导探头扫描</b>
+              <span class="tag-concept">概念演示</span>
+            </div>
+            <svg id="em-scan-svg" viewBox="0 0 320 200" role="img" aria-label="波导探头扫描示意"></svg>
+            <div class="ctrl-row">
+              <button id="em-play" type="button" class="ctl primary">▶ 播放</button>
+              <button id="em-replay" type="button" class="ctl">↺ 重播</button>
+            </div>
+          </div>
+
+          <!-- S 参数曲线 -->
+          <div class="panel">
+            <div class="panel-head">
+              <b>S 参数采集</b>
+              <span class="tag-demo">演示数据</span>
+            </div>
+            <canvas id="em-canvas" height="300"></canvas>
+            <div class="axis-note">横轴：频率 (GHz) · 纵轴：S11 (dB) · 单端口反射架构，仅 S11</div>
+            <div class="ctrl-row wrap" id="em-curve-btns"></div>
+          </div>
+
+          <!-- 近场→远场流程 -->
+          <div class="panel">
+            <div class="panel-head"><b>近场到远场评价流程</b></div>
+            <ol class="ntff" id="ntff-list"></ol>
+            <div class="mini-map">
+              <span class="mini-map-label">近场响应重建（演示）</span>
+              <canvas id="em-map-canvas" height="150"></canvas>
+            </div>
+            <p class="note-small">技术路线示意：网页不执行实时近远场数值计算。</p>
+            <button class="next-btn" data-next="repair" type="button">下一步：修复流程 ↓</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 模块 04 Repair ================= -->
+      <section class="module" id="repair" data-module="repair" aria-labelledby="repair-title">
+        <div class="module-head">
+          <div class="module-id"><span>04</span><b>REPAIR</b></div>
+          <div>
+            <p class="section-kicker">修复流程</p>
+            <h2 id="repair-title">蜂窝夹层结构挖补修复</h2>
+          </div>
+          <p class="module-desc">
+            修复流程通过局部材料去除、蜂窝芯更换、胶膜与修补层铺放，以及后续加压固化和修复后检查，恢复夹层结构的局部构型。
+          </p>
+        </div>
+
+        <div class="module-body two-col">
+          <div class="viewer-panel">
+            <div class="viewer-head">
+              <span id="repair-step-badge">01 · 损伤评估与区域标记</span>
+              <span class="viewer-hint">挖补剖面示意</span>
+            </div>
+            <svg id="repair-svg" viewBox="0 0 560 270" role="img" aria-label="挖补修复剖面分步示意"></svg>
+            <figure class="repair-ref">
+              <img src="./assets/repair-scarf-configuration.webp" alt="飞机前缘挖补修复构型参考：围绕损伤区形成台阶/斜面，逐层修补" loading="lazy" />
+              <figcaption>参考：飞机前缘挖补（scarf）修复构型 —— 本页剖面示意据此抽象</figcaption>
+            </figure>
+            <div class="ctrl-row">
+              <button id="repair-prev" type="button" class="ctl">← 上一步</button>
+              <button id="repair-next" type="button" class="ctl primary">下一步 →</button>
+            </div>
+          </div>
+          <div class="side-panel">
+            <h3>步骤</h3>
+            <ol class="repair-steps" id="repair-steps"></ol>
+            <div class="closed-loop" id="closed-loop" hidden>
+              <p>修复流程完成，结构进入「修复后」状态。</p>
+              <button id="view-repaired" type="button" class="next-btn">查看修复后结构 ↺</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-foot">
+        <a href="../">← 返回 AI Stealth Lab</a>
+        <span>损伤检测与修复工作流 · Module 10 · 演示数据，不构成工程结论</span>
+      </footer>
+    </main>
+  </body>
+</html>

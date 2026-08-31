@@ -19,6 +19,7 @@
 - [界面与参考几何](#界面与参考几何)
 - [跨尺度链路](#跨尺度链路)
 - [AeroRepair Scan 原位评估](#aerorepair-scan-原位评估)
+- [Repair Workflow 损伤检测与修复](#repair-workflow-损伤检测与修复)
 - [AbsorbEvo 逆向设计](#absorbevo-逆向设计)
 - [技术栈](#技术栈)
 - [当前界面](#当前界面)
@@ -74,6 +75,21 @@ TPMS 微观胞元
 ```text
 结构／材料设计 → 整机 RCS → 现场修复 → 近场扫描 → 缺陷定位 → 质量评估
 ```
+
+## Repair Workflow 损伤检测与修复
+
+[Repair Workflow](./repair-workflow/) 是 Stealth Lab 的 **Module 10**，把隐身飞机蜂窝夹层结构"从损伤到修复闭环"的完整工作流做成一页可交互演示：
+
+```text
+损伤构型认知 → 超声无损检测 → 电磁无损检测 → 挖补修复 → 修复后再检测
+```
+
+- **Damage**：Three.js 蜂窝夹层剖切模型，可旋转缩放，一键切换完好 / 冲击 / 穿孔 / 修复后四种状态；
+- **Sense**：超声 A-scan + Hilbert 包络，六个测点沿扫描线自动播放，逐点给出 Intact / Suspected / Damage 判定；
+- **Probe**：波导探头光栅扫描 + S11 曲线（对照完好参考）+ 近场响应热图，并串联"校准去嵌 → 近场重建 → 近远场变换 → RCS 评估"的概念流程；
+- **Repair**：依据飞机前缘挖补（scarf）修复构型参考图抽象的六步剖面分步动画——标记、打磨、换芯、铺贴、固化、后检，最后回到"修复后"状态完成闭环。
+
+模块为原生 HTML/CSS/JavaScript 静态实现（Three.js 已本地化，离线可用），演示数据由 `tools/generate-demo-data.mjs` 确定性生成并带有明确的合成数据声明，可随 GitHub Pages 直接部署。主页顶栏与首页操作区已加入口链接。
 
 ## AbsorbEvo 逆向设计
 

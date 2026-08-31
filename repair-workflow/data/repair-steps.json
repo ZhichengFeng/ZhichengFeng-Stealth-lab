@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "dataset_name": "Repair Workflow repair step definitions",
+  "classification": "概念示意配置 / Conceptual configuration",
+  "disclaimer": "步骤顺序以典型蜂窝夹层挖补修理工艺为参照；不包含温度、压力、时间、材料牌号或尺寸等工艺参数。",
+  "geometry_note_zh": "挖补构型：围绕损伤区形成圆形（或椭圆）台阶/斜面，逐层暴露铺层；更换蜂窝芯后回填修补层。",
+  "steps": [
+    {
+      "id": "assess",
+      "index": 1,
+      "title_zh": "损伤评估与区域标记",
+      "title_en": "Damage Assessment & Marking",
+      "detail_zh": "结合超声与电磁检测结果确定损伤范围，在蒙皮表面标记修理边界。",
+      "detail_en": "The damage extent identified by ultrasonic and electromagnetic inspection is marked on the facesheet as the repair boundary."
+    },
+    {
+      "id": "grind",
+      "index": 2,
+      "title_zh": "局部打磨与清理",
+      "title_en": "Scarf Grinding & Cleaning",
+      "detail_zh": "沿标记区域打磨受损蒙皮，形成台阶/斜面并清理表面，为修补层铺放做准备。",
+      "detail_en": "The damaged facesheet is scarfed back to sound material and cleaned to prepare the bonding surface."
+    },
+    {
+      "id": "core",
+      "index": 3,
+      "title_zh": "去除损伤芯材并更换蜂窝芯",
+      "title_en": "Core Removal & Replacement",
+      "detail_zh": "去除压溃或穿孔区域的蜂窝芯，插入匹配的新蜂窝芯替换件。",
+      "detail_en": "Crushed or perforated honeycomb core is removed and replaced with a matching core plug."
+    },
+    {
+      "id": "layup",
+      "index": 4,
+      "title_zh": "胶膜与修补层铺放",
+      "title_en": "Adhesive Film & Repair Ply Placement",
+      "detail_zh": "依次铺放胶膜与修补层，逐层覆盖台阶/斜面区域，恢复铺层顺序。",
+      "detail_en": "Adhesive film and repair plies are placed in sequence over the scarfed area to restore the ply stack."
+    },
+    {
+      "id": "cure",
+      "index": 5,
+      "title_zh": "真空封装 / 加压固化",
+      "title_en": "Vacuum Bagging / Pressure & Curing",
+      "detail_zh": "施加真空袋或局部压力并完成固化，使修补层与母结构结合。示意仅表现加压与固化动作，不含工艺参数。",
+      "detail_en": "Vacuum bag or local pressure is applied and the repair is cured. Only the consolidation action is shown; no process parameters are given."
+    },
+    {
+      "id": "inspect",
+      "index": 6,
+      "title_zh": "修复后检查",
+      "title_en": "Post-repair Inspection",
+      "detail_zh": "对修复区域再次进行无损检测，确认修补质量，形成「检测—修复—再检测」闭环。",
+      "detail_en": "The repaired region is re-inspected by NDI to verify repair quality, closing the inspect–repair–re-inspect loop."
+    }
+  ]
+}
