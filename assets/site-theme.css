@@ -1,0 +1,102 @@
+/* Shared page palette. Load last on every entry page. */
+:root {
+  --site-bg: #122d36;
+  --site-bg-rgb: 18, 45, 54;
+  --site-header: #15313a;
+  --site-surface: #1a3943;
+  --site-surface-raised: #22444f;
+  --site-inset: #15323c;
+  --site-muted: #a7bfc5;
+  --site-chart-bg: #0a2027;
+
+  /* Bridge the main application and both native modules to the same palette. */
+  --ink-deep: var(--site-bg);
+  --bg: var(--site-bg);
+  --bg-soft: var(--site-inset);
+  --panel: var(--site-surface);
+  --panel-strong: var(--site-surface);
+  --panel-2: var(--site-surface-raised);
+  --muted: var(--site-muted);
+  --dim: #92afb7;
+}
+
+html,
+body,
+.lab-shell,
+.intro-overlay,
+.project-overview,
+.absorbevo-workspace,
+.section.muted,
+.demo-section {
+  background: var(--site-bg);
+}
+
+.topbar,
+.labbar,
+.flowbar {
+  background: var(--site-header);
+}
+
+/* Keep the aircraft photograph, blended into the shared page base. */
+.hero::after {
+  background:
+    linear-gradient(90deg, rgba(var(--site-bg-rgb), .98), rgba(var(--site-bg-rgb), .94) 38%, rgba(var(--site-bg-rgb), .78) 72%, rgba(var(--site-bg-rgb), .92)),
+    linear-gradient(0deg, var(--site-bg), transparent 55%);
+}
+.page-head::before { background: none; }
+
+.glass-panel,
+.site-visual,
+.site-module-card,
+.project-overview-card,
+.absorbevo-value-card,
+.absorbevo-reasoning-card,
+.reference-dialog,
+.hardware-card,
+.bridge-grid article,
+.support-grid article,
+.workflow li,
+.demo-shell,
+.summary-card,
+.principle-grid details,
+.boundary-cards article,
+.panel,
+.viewer-panel,
+.side-panel {
+  background: var(--site-surface);
+}
+
+.project-overview-grid article,
+.absorbevo-loop-stage,
+.absorbevo-boundary,
+.absorbevo-evidence-grid article,
+.absorbevo-mode-list button:not(.active),
+.topbar-context,
+.control-group select,
+.speed-control select,
+.controls select,
+.viewer-head,
+.repair-ref,
+.repair-steps li:not(.lit),
+.ntff li:not(.lit) {
+  background: var(--site-inset);
+}
+
+.site-module-card:hover,
+.bridge-grid article.active { background: var(--site-surface-raised); }
+.ending-overlay,
+.reference-backdrop { background: rgba(var(--site-bg-rgb), .94); }
+
+.absorbevo-evidence-grid p,
+.absorbevo-reasoning-heading > p,
+.absorbevo-evidence-heading > p,
+.absorbevo-boundary p,
+.absorbevo-mode-list small,
+.project-overview-grid p,
+.ending-card > small { color: var(--site-muted); }
+
+/* Preserve the original backing of scientific diagrams and heatmaps. */
+#repair-svg,
+#us-scan-svg,
+#em-scan-svg,
+#em-map-canvas { background: var(--site-chart-bg); }

@@ -14,6 +14,9 @@
 | `assets/site-enhancements.js` | 客户端初始化后的概念图、模块入口、导航辅助标签和跳转到主要内容 |
 | `assets/site-mobile-workspace.css` | 手机和平板实验面板的自然滚动布局，以及时间轴定位 |
 | `assets/timeline-navigation.js` | 使用原有时间轴与阶段数据，修正阶段跳转的时间舍入误差 |
+| `assets/site-theme.css` | 四个页面入口共用的底色、顶栏和卡片配色；须在其他样式之后加载 |
+
+页面底色统一为 `#122d36`，顶栏为 `#15313a`，卡片为 `#1a3943`。调整整体明暗时优先修改 `site-theme.css` 中的共享变量，并同步四个入口的 `theme-color`；主应用的序列化 RSC 元数据也包含该颜色。绘图区域、色标及三维模型的科学内容配色独立保留。
 
 这层增强复用现有图像和交互入口，不改写科学数据。重新生成主应用时，应重新接入这些文件，并检查它们依赖的页面类名和交互入口是否仍然匹配。时间轴适配脚本导入了带哈希名称的模块：重新构建时须更新其导入，或在源工程 `TimelineDock.tsx` 中把阶段跳转目标设为阶段起点之后 1 毫秒，再移除此适配脚本。`site-mobile-workspace.css` 应在 `site-polish.css` 之后加载。README 的桌面截图保存在 `docs/screenshots/home-desktop.png`；首页发生明显变化时同步更新。
 
