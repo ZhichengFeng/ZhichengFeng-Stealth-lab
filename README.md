@@ -1,164 +1,143 @@
-# AI Stealth Lab · 跨尺度电磁科研实验室
+# AI Stealth Lab
+
+### 从微观结构，到隐身与修复的跨尺度科研展示
 
 **From Microstructure to Aircraft RCS**
 
-[![GitHub Pages](https://img.shields.io/badge/demo-live-brightgreen)](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/)
-[![Status](https://img.shields.io/badge/status-work--in--progress-orange)](#roadmap)
-[![Stack](https://img.shields.io/badge/stack-React%2019%20%C2%B7%20Three.js%20%C2%B7%20TypeScript%20%C2%B7%20Python-blue)](#技术栈)
-[![Data](https://img.shields.io/badge/data-synthetic%20%2B%20verified%20CST-lightgrey)](#数据与产品边界)
+[![Live website](https://img.shields.io/badge/Explore-AI_Stealth_Lab-52747c?style=flat-square)](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/)
+[![Distribution](https://img.shields.io/badge/Distribution-GitHub_Pages-303d47?style=flat-square)](#本地预览)
+[![Data provenance](https://img.shields.io/badge/Data-Synthetic_%2B_CST_reference-8c7252?style=flat-square)](#数据来源与边界)
 
-![AI Stealth Lab](og.png)
+![AI Stealth Lab 桌面首页截图：跨尺度演示入口、概念链路图，以及设计、扫描、修复工作台](docs/screenshots/home-desktop.png)
 
-**在线演示**：[主实验室](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/) ｜ [无人值守演示 `/demo/`](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/demo/) ｜ [AeroRepair Scan](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/aerorepair-scan/)
+把 TPMS 微观胞元、局部电磁场、端口响应、等效材料、飞机散射和修复评估连接起来。用约 30 秒连续三维演示理解尺度之间的关系，再进入参数探索、逆向设计和检测修复工作流。
 
-> **English.** *AI Stealth Lab* is a runnable, interactive cross-scale electromagnetics showcase that links TPMS microstructures, unit-cell fields, port responses, S-parameters, retrieved effective material tensors, component layouts, surface currents and far-field RCS in one continuous visual chain. It ships with a ~30 s auto-play demo, six deterministic synthetic TPMS→RCS cases (Gyroid / Diamond / Primitive × TE / TM), a verified CST honeycomb reflection reference (8–12 GHz), the **AbsorbEvo** inverse-design workbench, and the **AeroRepair Scan** in-situ repair-assessment module. The project is under active development; a paper is in preparation.
+> **English.** An interactive cross-scale electromagnetics showcase, connecting TPMS microstructures to aircraft scattering and repair assessment. Explore eight linked stages, six deterministic synthetic cases, an independent CST honeycomb reflection reference, the AbsorbEvo design workbench, and two repair modules. This repository contains the published static website; full-chain results are demonstration data.
 
-## 目录
+## 开始探索
 
-- [项目功能](#项目功能)
-- [界面与参考几何](#界面与参考几何)
-- [跨尺度链路](#跨尺度链路)
-- [AeroRepair Scan 原位评估](#aerorepair-scan-原位评估)
-- [Repair Workflow 损伤检测与修复](#repair-workflow-损伤检测与修复)
-- [AbsorbEvo 逆向设计](#absorbevo-逆向设计)
-- [技术栈](#技术栈)
-- [当前界面](#当前界面)
-- [数据与产品边界](#数据与产品边界)
-- [本地预览](#本地预览)
-- [部署](#部署)
-- [Roadmap](#roadmap)
+| 入口 | 可以体验什么 |
+| --- | --- |
+| **[主实验室](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/)** | 30 秒跨尺度演示、自由探索、项目介绍，以及 AbsorbEvo 工作台 |
+| **[演示专页](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/demo/)** | 独立演示与录屏入口 |
+| **[AeroRepair Scan · Module 09](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/aerorepair-scan/)** | 修复区域的概念近场扫描、缺陷定位与质量评估 |
+| **[Repair Workflow · Module 10](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/repair-workflow/)** | 蜂窝夹层结构的损伤认知、超声/电磁检测与挖补修复 |
 
-## 项目功能
+建议先在主实验室点击「开始 30 秒演示」，再用「自由探索」查看 Gyroid / Diamond / Primitive、TE / TM 极化及各阶段图表。AbsorbEvo 从主实验室的同名按钮进入。
 
-- 提供约 30 秒的自动“一镜到底”演示，也支持自由探索；
-- 支持 Gyroid、Diamond、Primitive 三种 TPMS 结构，以及 TE / TM 极化切换；
-- 可调节频率、入射角、观察尺度等参数，并联动更新三维场景与科研图表；
-- 通过八个连续阶段展示从微观胞元到远场 RCS 的跨尺度信息传递；
-- 可视化胞元场、端口切向场、S 参数、等效介电常数张量、机翼前缘、表面电流热点和 RCS；
-- 提供 CST 独立参考数据入口，并在界面中明确区分真实数据、合成演示数据和预留求解接口；
-- 集成 **AbsorbEvo** 逆向设计工作台，用证据受控的方式诊断现有吸波结构，并提出下一步值得验证的改进方向；
-- 集成 **AeroRepair Scan** 原位评估模块，把设计端的整机 RCS 链路延伸到修复后的近场扫描、缺陷定位与质量评估。
+## 一条连续的科研链路
 
-## 界面与参考几何
+```text
+01 TPMS 胞元 → 02 局部场 → 03 端口场 / S 参数 → 04 等效张量
+                                                   ↓
+08 远场 RCS ← 07 表面电流 ← 06 整机照射 ← 05 前缘结构
+     ↓
+损伤检测 → 挖补修复 → 修复后近场扫描与评估
+```
+
+主实验室把三维场景、阶段时间轴、参数面板和科研图表联动起来。可以切换结构、极化、频率、入射角与观察尺度，查看端口切向场、反射/透射、等效介电常数张量、前缘铺设、表面热点和远场 RCS。
+
+### 参考几何
 
 | Gyroid | Diamond | Primitive |
 | :---: | :---: | :---: |
-| ![Gyroid TPMS](reference/tpms-gyroid.png) | ![Diamond TPMS](reference/tpms-diamond.png) | ![Primitive TPMS](reference/tpms-primitive.png) |
+| ![Gyroid TPMS 参考几何](reference/tpms-gyroid.png) | ![Diamond TPMS 参考几何](reference/tpms-diamond.png) | ![Primitive TPMS 参考几何](reference/tpms-primitive.png) |
 
-| 前缘 TPMS 铺设细节 | 前缘均质化视图 | CST 吸波蜂窝参考 |
+| 前缘 TPMS 铺设 | 前缘均质化 | 吸波蜂窝 |
 | :---: | :---: | :---: |
-| ![前缘 TPMS 细节](reference/leading-edge-tpms-detail.png) | ![前缘均质化](reference/leading-edge-homogenized.png) | ![吸波蜂窝](reference/absorbing-honeycomb.png) |
+| ![前缘 TPMS 铺设参考](reference/leading-edge-tpms-detail.png) | ![前缘均质化参考](reference/leading-edge-homogenized.png) | ![CST 吸波蜂窝参考几何](reference/absorbing-honeycomb.png) |
 
-> 动态演示见 [无人值守演示页面](https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/demo/)（约 30 秒一镜到底，可直接用于录屏）。
+以上为参考几何图片；首页截图中的跨尺度配图为概念示意。网页三维对象采用轻量化表示。
 
-## 跨尺度链路
+## 设计与修复模块
 
-```text
-TPMS 微观胞元
-→ 胞元场
-→ 两端口切向场
-→ S 参数
-→ 等效介电常数张量
-→ 机翼前缘
-→ 表面电流热点
-→ 远场 RCS
-→ 修复区域近场扫描
-→ 修复质量评估
-```
+### AbsorbEvo · 逆向设计
 
-## AeroRepair Scan 原位评估
+围绕「任务与约束 → 物理诊断 → Prior 候选搜索 → CST Exact 验证 → Evaluator 更新」组织设计推理，展示阻抗失配、损耗不足、厚度与带宽、角度与极化敏感等瓶颈，以及材料无源性、质量和制造约束。当前工作台提供诊断框架和待验证方向；公开页面不运行 CST 求解。
 
-[AeroRepair Scan](./aerorepair-scan/) 是 Stealth Lab 的 **Module 09**，面向隐身飞机复合材料／吸波结构修复后的便携式原位检测。它将“双极化微波探头 + 便携式矢量网络分析仪 + 位姿与距离感知 + 边缘计算 + 数字孪生”组织为一条可理解、可交互的扫描流程。
+### AeroRepair Scan · 原位评估
 
-模块包含高清核心设备图、飞机机翼扫描场景、六种概念验证案例，以及频率、极化、探头距离、热图、指标和自动扫描动画。公开页面采用原生 HTML/CSS/JavaScript 静态实现，可随 GitHub Pages 直接部署；完整 Python/Gradio 版本继续作为独立验证端，避免把运行时后端、登录状态或跨域依赖带入公开站点。
+将双极化微波探头、便携式矢量网络分析仪、位姿与距离感知、边缘计算和数字孪生串成可交互的扫描流程。提供设备概念图、机翼扫描场景、六种合成案例、频率/极化/距离控制、热图和自动扫描动画。
 
-```text
-结构／材料设计 → 整机 RCS → 现场修复 → 近场扫描 → 缺陷定位 → 质量评估
-```
+实现为原生 HTML / CSS / JavaScript 静态页面。详见[模块说明](aerorepair-scan/README.md)。
 
-## Repair Workflow 损伤检测与修复
+### Repair Workflow · 损伤检测与修复
 
-[Repair Workflow](./repair-workflow/) 是 Stealth Lab 的 **Module 10**，把隐身飞机蜂窝夹层结构"从损伤到修复闭环"的完整工作流做成一页可交互演示：
+| 阶段 | 交互内容 |
+| --- | --- |
+| **Damage** | 可旋转的蜂窝夹层剖切模型；完好、冲击、穿孔和修复后四种状态 |
+| **Sense** | 超声 A-scan、Hilbert 包络、六测点扫描及概念判定 |
+| **Probe** | 波导探头扫描、S11 对照曲线、近场响应热图及近远场转换概念流程 |
+| **Repair** | 标记、打磨、换芯、铺贴、固化、后检六步挖补修复动画 |
 
-```text
-损伤构型认知 → 超声无损检测 → 电磁无损检测 → 挖补修复 → 修复后再检测
-```
+Three.js 已随模块保存，演示数据可确定性生成。详见[模块说明](repair-workflow/README.md)。
 
-- **Damage**：Three.js 蜂窝夹层剖切模型，可旋转缩放，一键切换完好 / 冲击 / 穿孔 / 修复后四种状态；
-- **Sense**：超声 A-scan + Hilbert 包络，六个测点沿扫描线自动播放，逐点给出 Intact / Suspected / Damage 判定；
-- **Probe**：波导探头光栅扫描 + S11 曲线（对照完好参考）+ 近场响应热图，并串联"校准去嵌 → 近场重建 → 近远场变换 → RCS 评估"的概念流程；
-- **Repair**：依据飞机前缘挖补（scarf）修复构型参考图抽象的六步剖面分步动画——标记、打磨、换芯、铺贴、固化、后检，最后回到"修复后"状态完成闭环。
+## 数据来源与边界
 
-模块为原生 HTML/CSS/JavaScript 静态实现（Three.js 已本地化，离线可用），演示数据由 `tools/generate-demo-data.mjs` 确定性生成并带有明确的合成数据声明，可随 GitHub Pages 直接部署。主页顶栏与首页操作区已加入口链接。
-
-## AbsorbEvo 逆向设计
-
-AbsorbEvo 让 Stealth Lab 从“展示计算结果”进一步走向“思考下一步改什么”。工作台围绕以下闭环组织设计推理：
-
-```text
-任务与约束 → 物理诊断 → Prior 候选搜索 → CST Exact 验证 → Evaluator 更新
-```
-
-它目前可展示针对阻抗失配、损耗不足、厚度—带宽冲突以及角度／极化敏感等问题的诊断逻辑，并给出受材料无源性、厚度、质量和制造条件约束的候选改进方向。所有候选都必须经过确定性验证后才能更新当前设计。
-
-## 技术栈
-
-- vinext / Next.js App Router
-- React 19 + TypeScript
-- Three.js / React Three Fiber / drei
-- GSAP
-- Zustand
-- ECharts
-- Python 数据生成、转换与校验工具
-- Vitest 与 Playwright Core
-
-## 当前界面
-
-- 自动演示与自由探索两种使用模式；
-- 连续三维场景、阶段时间轴、参数控制面板和科研图表联动；
-- TPMS、端口场、S 参数、等效张量、前缘铺设、整机电流与 RCS 多尺度视图；
-- CST 参考几何与吸波蜂窝反射曲线查看；
-- AbsorbEvo 的设计闭环、典型瓶颈诊断、证据状态和后续验证门槛；
-- AeroRepair Scan 的核心设备、原位扫描工作流与交互式概念评估；
-- `/demo/` 无人值守演示页面，可用于录制与展示。
-- `/aerorepair-scan/` 修复后原位扫描与质量评估页面。
-
-## 数据与产品边界
-
-| 对象 | 性质 | 说明 |
+| 内容 | 数据性质 | 当前范围 |
 | --- | --- | --- |
-| 六个完整的 TPMS → RCS 案例 | 合成演示数据 | 确定性合成，用于展示交互、数据结构和跨尺度工作流，不能据此声称获得了真实整机 RCS |
-| CST 吸波蜂窝共极化反射缓存 | 真实仿真参考 | 覆盖 8–12 GHz、共 1,001 个频点，包含 TE / TM 反射；不包含 S21，也不构成完整的 TPMS → RCS 链路 |
-| 网页中的 TPMS、前缘与整机对象 | 轻量化程序表示 | 依据参考几何构建，并非与 CST 网格逐顶点一致 |
-| AbsorbEvo | 证据受控的设计推理 | 提供可验证假设，不替代 CST 求解，也不会把未经验证的候选描述为整机 RCS 提升 |
-| AeroRepair Scan | 概念验证级合成数据 | 用于说明近场扫描流程、交互与数据结构，不替代经校准仪器测量、无损检测判读或适航认证 |
+| 六个 TPMS → RCS 完整案例 | **合成演示** | 三种 TPMS × TE / TM，用于交互与跨尺度流程展示 |
+| CST 吸波蜂窝反射缓存 | **独立真实仿真参考** | 8–12 GHz、1,001 频点、TE / TM 共极化反射；没有 S21 |
+| TPMS、前缘与整机三维对象 | **轻量化几何表示** | 用于连续镜头和交互，不与 CST 网格逐顶点一致 |
+| AbsorbEvo | **设计推理与接口框架** | 候选需要确定性验证，页面不直接给出已验证优化结果 |
+| AeroRepair Scan / Repair Workflow | **概念验证与合成数据** | 展示扫描、检测和修复工作流，不代表实测缺陷判定或工程验收结果 |
+
+完整链路目前不能用于声称真实整机 RCS、预测精度或隐身性能提升。独立 CST 参考也不构成完整 TPMS → RCS 验证。可查看[数据清单](data/manifest.json)、[数据校验记录](data/validation_report.json)和[CST 来源记录](data/real/cst_honeycomb_smoke.provenance.json)。
 
 ## 本地预览
 
-本仓库保存的是 GitHub Pages 静态发布版本。请保留默认目录名 `ZhichengFeng-Stealth-lab`，在它的上一级目录运行：
+**本仓库是 GitHub Pages 静态发布产物**，包含已构建的主应用和可直接维护的原生模块，不包含 React / TypeScript 源码工程或 npm 构建配置。预览只需要 Python 3 与支持 WebGL 的浏览器。
+
+在保存项目的父目录中运行：
 
 ```powershell
-python -m http.server 3000
+git clone https://github.com/ZhichengFeng/ZhichengFeng-Stealth-lab.git
+python -m http.server 3000 --bind 127.0.0.1
 ```
 
-然后访问：
+打开以下地址：
+
+- [主实验室](http://127.0.0.1:3000/ZhichengFeng-Stealth-lab/)
+- [演示专页](http://127.0.0.1:3000/ZhichengFeng-Stealth-lab/demo/)
+- [AeroRepair Scan](http://127.0.0.1:3000/ZhichengFeng-Stealth-lab/aerorepair-scan/)
+- [Repair Workflow](http://127.0.0.1:3000/ZhichengFeng-Stealth-lab/repair-workflow/)
+
+保留目录名 `ZhichengFeng-Stealth-lab` 并从父目录启动服务器：主应用资源路径包含这一前缀。请通过 HTTP 访问，直接双击 HTML 无法可靠加载模块和数据。
+
+## 项目结构与维护
 
 ```text
-http://127.0.0.1:3000/ZhichengFeng-Stealth-lab/
-http://127.0.0.1:3000/ZhichengFeng-Stealth-lab/aerorepair-scan/
+index.html / demo/       主实验室与演示入口
+assets/                 已构建的主应用、独立视觉增强层与模块入口脚本
+data/                   合成案例、manifest 和 CST 独立参考
+models/ / reference/    轻量模型、来源信息与参考几何图
+aerorepair-scan/         Module 09：原生静态扫描模块
+repair-workflow/         Module 10：原生静态检测修复模块
+docs/                   发布维护说明
+tools/                  静态资源与数据完整性检查
 ```
 
-## 部署
+主应用来自 vinext / Next.js App Router、React 19、TypeScript、Three.js / React Three Fiber、GSAP、Zustand 和 ECharts 的构建产物；数据生产端使用 Python。两项修复模块使用原生浏览器技术，不依赖运行中的 Python 后端。
 
-本仓库用于发布 AI Stealth Lab 的 GitHub Pages 静态版本。更新合并到 `main` 分支并完成 GitHub Pages 部署后，公开页面会同步显示最新内容。
+在仓库根目录运行发布前静态检查：
 
-## Roadmap
+```powershell
+python tools/check_site.py
+```
 
-- [x] 跨尺度可视化链路（TPMS 微观胞元 → 远场 RCS，八阶段一镜到底）
-- [x] 六个确定性合成演示案例（3 种 TPMS 结构 × TE / TM 极化）
-- [x] CST 真实参考数据接入（吸波蜂窝共极化反射，8–12 GHz，1,001 频点）
-- [x] AbsorbEvo 逆向设计工作台框架
-- [x] AeroRepair Scan 修复后原位评估模块（Module 09）
-- [ ] 完整 TPMS → RCS 链路的真实仿真验证案例
-- [ ] 更多 CST 求解结果与实测数据接入
-- [ ] 论文撰写与发表（in preparation）
+该检查验证本地页面链接、静态资源和 manifest 中的资源哈希；三维交互、移动端布局与图表仍需浏览器验收。完整维护方法见[静态网站维护说明](docs/maintaining-static-site.md)。
+
+GitHub Pages 发布目录为本仓库根目录。更新推送到 `main` 后，以仓库 Pages 部署任务成功以及线上页面验收为发布完成依据。
+
+## 后续工作
+
+- [x] 八阶段连续演示与六组合成案例
+- [x] CST 吸波蜂窝独立反射参考
+- [x] AbsorbEvo 设计推理工作台框架
+- [x] AeroRepair Scan 原位扫描模块
+- [x] Repair Workflow 损伤检测与修复模块
+- [ ] 完整 TPMS → RCS 真实仿真验证案例
+- [ ] 更多经校验的 CST 结果与实测数据
+- [ ] 论文撰写与发表
+
+作者：**Zhicheng Feng**。使用条款见 [LICENSE](LICENSE)。

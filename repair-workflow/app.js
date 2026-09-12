@@ -9,6 +9,10 @@
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const scrollToModule = (id) => document.getElementById(id).scrollIntoView({
+    behavior: reducedMotion.matches ? "instant" : "smooth", block: "start"
+  });
 
   const STATE_LABEL = {
     intact: "完好 · Intact",
@@ -57,9 +61,12 @@
     const badge = $("#damage-badge");
     if (badge) badge.textContent = label;
     // 状态切换按钮高亮
-    $$(".state-switch button").forEach((b) =>
-      b.setAttribute("aria-selected", String(b.dataset.state === state))
-    );
+    $$(".state-switch button").forEach((b) => {
+      b.setAttribute("aria-selected", String(b.dataset.state === state));
+      b.tabIndex = b.dataset.state === state ? 0 : -1;
+    });
+    $("#damage-viewer").setAttribute("aria-label", `蜂窝夹层结构三维示意：${label}`);
+    $("#damage-viewer").setAttribute("aria-labelledby", `state-${state}`);
     // 说明文字
     const st = (DATA.damage.states || []).find((s) => s.id === state);
     const desc = $("#damage-desc");
@@ -76,7 +83,7 @@
         懒加载 three.module.js（本地 vendor，离线可用）
      ============================================================ */
   const DamageViewer = (() => {
-    let THREE = null, renderer = null, scene = null, camera = null, frame = 0;
+    let THREE = null, renderer = null, scene = null, camera = null;
     let group = null, stateGroups = {};
     let dragging = false, px = 0, py = 0, rx = -0.5, ry = 0.7, dist = 30;
     let inited = false, failed = false;
@@ -252,8 +259,8 @@
       camera.updateProjectionMatrix();
     }
 
-    function animate() {
-      frame = requestAnimationFrame(animate);
+    function renderView() {
+      if (!renderer || !group) return;
       group.rotation.y = ry;
       group.rotation.x = rx;
       const d = dist;
@@ -277,15 +284,29 @@
         ry += (e.clientX - px) * 0.008;
         rx = clamp(rx + (e.clientY - py) * 0.005, -1.1, 0.4);
         px = e.clientX; py = e.clientY;
+        renderView();
       });
-      ["pointerup", "pointerleave"].forEach((ev) =>
+      ["pointerup", "pointercancel", "lostpointercapture"].forEach((ev) =>
         holder.addEventListener(ev, () => { dragging = false; })
       );
       holder.addEventListener("wheel", (e) => {
         e.preventDefault();
         dist = clamp(dist + e.deltaY * 0.02, 18, 55);
+        renderView();
       }, { passive: false });
-      new ResizeObserver(resize).observe(holder);
+      holder.addEventListener("keydown", (e) => {
+        if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "+", "=", "-", "Home"].includes(e.key)) return;
+        e.preventDefault();
+        if (e.key === "ArrowLeft") ry -= .12;
+        if (e.key === "ArrowRight") ry += .12;
+        if (e.key === "ArrowUp") rx = clamp(rx - .08, -1.1, .4);
+        if (e.key === "ArrowDown") rx = clamp(rx + .08, -1.1, .4);
+        if (e.key === "+" || e.key === "=") dist = clamp(dist - 2, 18, 55);
+        if (e.key === "-") dist = clamp(dist + 2, 18, 55);
+        if (e.key === "Home") { rx = -.5; ry = .7; dist = 30; }
+        renderView();
+      });
+      new ResizeObserver(() => { resize(); renderView(); }).observe(holder);
     }
 
     async function init() {
@@ -300,15 +321,15 @@
         buildScene();
         resize();
         bindEvents();
-        animate();
         inited = true;
+        setState(currentState);
       } catch (err) {
         failed = true;
         const holder = $("#damage-viewer");
         if (holder) {
           holder.innerHTML =
             '<div style="display:grid;place-items:center;height:100%;color:#66858c;font-size:12px;padding:20px;text-align:center;">' +
-            "三维示意加载失败（缺少 vendor/three.module.js）。<br/>不影响其余模块浏览。</div>";
+            "三维视图暂不可用。请检查浏览器 WebGL 支持或重新加载页面。<br/>仍可切换状态并浏览下方检测与修复演示。</div>";
         }
       }
     }
@@ -316,6 +337,7 @@
     function setState(state) {
       if (!inited || !stateGroups[state]) return;
       Object.entries(stateGroups).forEach(([k, g]) => { g.visible = k === state; });
+      renderView();
     }
 
     return { init, setState };
@@ -351,7 +373,7 @@
   function drawChart(canvas, cfg) {
     const { ctx, w, h } = setupCanvas(canvas, cfg.height || 300);
     ctx.clearRect(0, 0, w, h);
-    const P = { l: 52, r: 12, t: 48, b: 38 };
+    const P = { l: 52, r: 12, t: w < 360 ? 68 : 48, b: 38 };
     const iw = w - P.l - P.r, ih = h - P.t - P.b;
     const xOf = (x) => P.l + ((x - cfg.x[0]) / (cfg.x[1] - cfg.x[0])) * iw;
     const yOf = (y) => P.t + ih - ((y - cfg.y[0]) / (cfg.y[1] - cfg.y[0])) * ih;
@@ -407,9 +429,14 @@
 
     // 图例
     let lx = P.l + 4;
-    const ly = P.t - 14;
+    let ly = 34;
     ctx.font = "10.5px Inter, sans-serif";
     cfg.series.forEach((s) => {
+      const legendWidth = 20 + ctx.measureText(s.label).width + 18;
+      if (lx > P.l + 4 && lx + legendWidth > w - P.r) {
+        lx = P.l + 4;
+        ly += 18;
+      }
       ctx.strokeStyle = s.color;
       ctx.lineWidth = 2;
       ctx.setLineDash(s.dash ? [4, 3] : []);
@@ -418,7 +445,7 @@
       ctx.fillStyle = "#9bb5ba";
       ctx.textAlign = "left";
       ctx.fillText(s.label, lx + 20, ly + 3);
-      lx += 20 + ctx.measureText(s.label).width + 18;
+      lx += legendWidth;
     });
   }
 
@@ -519,6 +546,7 @@
     }
 
     function pulseOnce() {
+      if (reducedMotion.matches) return;
       const c = $("#us-pulse");
       if (!c) return;
       c.animate(
@@ -529,6 +557,7 @@
 
     function revealAnimate() {
       cancelAnimationFrame(rafId);
+      if (reducedMotion.matches) { revealT = 1; drawWave(1); return; }
       const start = performance.now();
       const dur = 620;
       (function tick(now) {
@@ -567,6 +596,7 @@
 
     function refresh() {
       pause();
+      cancelAnimationFrame(rafId);
       pointIdx = 0;
       buildScanSVG();
       const sel = $("#us-point");
@@ -582,7 +612,7 @@
       refresh();
     }
 
-    return { init, refresh };
+    return { init, refresh, redraw: () => drawWave(1) };
   })();
 
   /* ============================================================
@@ -733,7 +763,16 @@
         b.className = "ctl" + (i === curveIdx ? " active" : "");
         b.textContent = c.id;
         b.title = c.position_zh;
-        b.addEventListener("click", () => { curveIdx = i; buildCurveButtons(); drawS11(); });
+        b.setAttribute("aria-label", `${c.id} · ${c.position_zh}`);
+        b.setAttribute("aria-pressed", String(i === curveIdx));
+        b.addEventListener("click", () => {
+          curveIdx = i;
+          holder.querySelectorAll("button").forEach((button, index) => {
+            button.classList.toggle("active", index === i);
+            button.setAttribute("aria-pressed", String(index === i));
+          });
+          drawS11();
+        });
         holder.appendChild(b);
       });
     }
@@ -755,7 +794,7 @@
       refresh();
     }
 
-    return { init, refresh };
+    return { init, refresh, redraw: () => { drawS11(); drawMap(); } };
   })();
 
   /* ============================================================
@@ -919,7 +958,7 @@
         ${annotations()}
         ${cure()}
         ${finalMark()}
-        <text x="30" y="252" fill="#aecdd3" font-size="12.5">上蒙皮 y=92..106 · 蜂窝芯 y=106..188 · 下蒙皮 y=188..202</text>
+        <text x="30" y="252" fill="#aecdd3" font-size="12.5">上蒙皮 · 蜂窝芯 · 下蒙皮 / 构型示意，非比例</text>
       `;
     }
 
@@ -929,14 +968,18 @@
       const list = $("#repair-steps");
       list.innerHTML = steps
         .map(
-          (st, i) => `<li data-i="${i}" class="${i === step ? "lit" : i < step ? "done" : ""}">
+          (st, i) => `<li class="${i === step ? "lit" : i < step ? "done" : ""}"><button type="button" data-i="${i}" aria-current="${i === step ? "step" : "false"}" aria-controls="repair-svg">
             <b><span class="rs-num">${String(i + 1).padStart(2, "0")}</span>${st.title_zh}</b>
             ${st.detail_zh}
-          </li>`
+          </button></li>`
         )
         .join("");
-      list.querySelectorAll("li").forEach((li) =>
-        li.addEventListener("click", () => { step = +li.dataset.i; render(); })
+      list.querySelectorAll("button").forEach((button) =>
+        button.addEventListener("click", () => {
+          step = +button.dataset.i;
+          render();
+          list.querySelector(`[data-i="${step}"]`).focus({ preventScroll: true });
+        })
       );
       const cur = steps[step];
       $("#repair-step-badge").textContent = cur
@@ -954,7 +997,7 @@
       });
       $("#view-repaired").addEventListener("click", () => {
         setDamageState("repaired");
-        document.getElementById("damage").scrollIntoView({ behavior: "smooth" });
+        scrollToModule("damage");
       });
       render();
     }
@@ -973,7 +1016,7 @@
     // 点击跳转
     Object.entries(nodes).forEach(([key, node]) =>
       node.addEventListener("click", () =>
-        document.getElementById(key).scrollIntoView({ behavior: "smooth" })
+        scrollToModule(key)
       )
     );
     // 滚动高亮
@@ -996,22 +1039,33 @@
     // 下一步按钮
     $$(".next-btn[data-next]").forEach((b) =>
       b.addEventListener("click", () =>
-        document.getElementById(b.dataset.next).scrollIntoView({ behavior: "smooth" })
+        scrollToModule(b.dataset.next)
       )
     );
 
     // 自动演示（轻量：仅按序高亮 + 滚动）
+    let tourVersion = 0;
     $("#start-workflow").addEventListener("click", async (e) => {
       const btn = e.currentTarget;
-      if (btn.classList.contains("running")) return;
+      const version = ++tourVersion;
+      if (btn.classList.contains("running")) {
+        btn.classList.remove("running");
+        btn.textContent = "▶ 开始演示";
+        btn.setAttribute("aria-pressed", "false");
+        return;
+      }
       btn.classList.add("running");
-      btn.textContent = "演示中…";
+      btn.textContent = "■ 停止演示";
+      btn.setAttribute("aria-pressed", "true");
       for (const id of order) {
-        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+        if (version !== tourVersion) return;
+        scrollToModule(id);
         await new Promise((r) => setTimeout(r, 2600));
       }
+      if (version !== tourVersion) return;
       btn.classList.remove("running");
       btn.textContent = "▶ 开始演示";
+      btn.setAttribute("aria-pressed", "false");
     });
   }
 
@@ -1026,12 +1080,28 @@
     RepairModule.init();
     initFlowbar();
     setDamageState("intact");
-    $$(".state-switch button").forEach((b) =>
-      b.addEventListener("click", () => setDamageState(b.dataset.state))
-    );
+    const stateButtons = $$(".state-switch button");
+    stateButtons.forEach((button, index) => {
+      button.addEventListener("click", () => setDamageState(button.dataset.state));
+      button.addEventListener("keydown", (event) => {
+        let target;
+        if (event.key === "ArrowRight") target = (index + 1) % stateButtons.length;
+        if (event.key === "ArrowLeft") target = (index + stateButtons.length - 1) % stateButtons.length;
+        if (event.key === "Home") target = 0;
+        if (event.key === "End") target = stateButtons.length - 1;
+        if (target === undefined) return;
+        event.preventDefault();
+        setDamageState(stateButtons[target].dataset.state);
+        stateButtons[target].focus();
+      });
+    });
+    let resizeFrame;
     window.addEventListener("resize", () => {
-      USModule.refresh();
-      EMModule.refresh();
+      cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(() => {
+        USModule.redraw();
+        EMModule.redraw();
+      });
     });
   }
 

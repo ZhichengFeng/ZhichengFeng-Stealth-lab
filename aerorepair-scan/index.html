@@ -20,8 +20,8 @@
     <meta name="twitter:image" content="https://zhichengfeng.github.io/ZhichengFeng-Stealth-lab/og-agent.png" />
     <title>AeroRepair Scan · AI Stealth Lab</title>
     <link rel="icon" href="../favicon-v2.png" type="image/png" />
-    <link rel="stylesheet" href="./styles.css" />
-    <script defer src="./app.js"></script>
+    <link rel="stylesheet" href="./styles.css?v=20260911" />
+    <script defer src="./app.js?v=20260911"></script>
   </head>
   <body>
     <a class="skip-link" href="#module-main">跳转到主要内容</a>
@@ -181,7 +181,7 @@
       <section class="section demo-section" id="demo">
         <div class="section-head split">
           <div><p class="section-kicker">INTERACTIVE CONCEPT SCAN</p><h2>原位扫描概念演示</h2></div>
-          <p>使用与原 Gradio 版本一致的六种场景和控制范围，在浏览器内生成可复现的静态站点模拟结果。</p>
+          <p>选择六种典型场景，调整频率、极化与探头距离，比较近场热图和评估指标。所有结果均为可复现的合成演示。</p>
         </div>
 
         <div class="demo-shell">
@@ -220,7 +220,7 @@
             <div class="progress-track"><i id="progress-bar"></i></div>
             <div class="visual-panel">
               <div class="visual-head"><span>COMPLEX NEAR-FIELD DIFFERENCE</span><small>归一化坐标 · 模拟 Δ|E|</small></div>
-              <canvas id="heatmap-canvas" width="960" height="520" aria-label="复数近场差分热图"></canvas>
+              <canvas id="heatmap-canvas" width="960" height="520" role="img" aria-label="复数近场差分热图" aria-describedby="summary-text">热图指标及参数见下方概念评估摘要。</canvas>
               <div class="color-scale" aria-hidden="true"><span>0</span><i></i><span>100</span></div>
             </div>
           </div>
@@ -271,7 +271,7 @@
 
     <footer>
       <a href="../">AI STEALTH LAB</a>
-      <span>AEROREPAIR SCAN · MODULE 09</span>
+      <a href="../repair-workflow/">继续探索：损伤检测与修复工作流 →</a>
       <small>Concept interface · Synthetic data only</small>
     </footer>
   </body>

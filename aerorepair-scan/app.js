@@ -33,6 +33,18 @@
   let cases = fallbackCases;
   let caseMap = new Map(cases.map((item) => [item.display_name, item]));
   let animationFrame = 0;
+  let scanProgress = 1;
+  let scanning = false;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function stopScan() {
+    cancelAnimationFrame(animationFrame);
+    scanning = false;
+    scanProgress = 1;
+    els.form.querySelector(".scan-button").disabled = false;
+    document.querySelector(".scan-workspace").setAttribute("aria-busy", "false");
+    document.querySelector(".metrics").setAttribute("aria-busy", "false");
+  }
 
   function frequencyGain(item, frequency) {
     const profile = item.frequency_profile || {};
@@ -133,10 +145,17 @@
 
   function drawHeatmap(result, progress = 1) {
     const canvas = els.canvas;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const width = canvas.clientWidth || 480;
+    const height = Math.max(240, width * 520 / 960);
+    if (canvas.width !== Math.round(width * dpr) || canvas.height !== Math.round(height * dpr)) {
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.height = `${height}px`;
+    }
     const ctx = canvas.getContext("2d", { alpha: false });
-    const width = canvas.width;
-    const height = canvas.height;
-    const plot = { x: 58, y: 34, width: width - 92, height: height - 88 };
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const plot = { x: 38, y: 22, width: width - 56, height: height - 76 };
     ctx.fillStyle = "#081d24";
     ctx.fillRect(0, 0, width, height);
     const cols = 80;
@@ -181,17 +200,17 @@
     }
     ctx.strokeStyle = "rgba(143, 200, 207, .34)";
     ctx.strokeRect(plot.x, plot.y, plot.width, plot.height);
-    ctx.fillStyle = "#78969b";
-    ctx.font = "12px Segoe UI, Microsoft YaHei, sans-serif";
+    ctx.fillStyle = "#9bb5ba";
+    ctx.font = "10px Segoe UI, Microsoft YaHei, sans-serif";
     ctx.fillText("−1.0", plot.x - 10, height - 28);
     ctx.fillText("0", plot.x + plot.width / 2 - 3, height - 28);
     ctx.fillText("1.0", plot.x + plot.width - 13, height - 28);
     ctx.save();
-    ctx.translate(18, plot.y + plot.height / 2 + 30);
+    ctx.translate(14, plot.y + plot.height / 2 + 35);
     ctx.rotate(-Math.PI / 2);
     ctx.fillText("横向 y（归一化）", 0, 0);
     ctx.restore();
-    ctx.fillText("扫描方向 x（归一化）", plot.x + plot.width / 2 - 56, height - 8);
+    ctx.fillText("扫描方向 x（归一化）", plot.x + plot.width / 2 - 48, height - 10);
   }
 
   function updateMetrics(result, scanning = false) {
@@ -227,6 +246,8 @@
     const result = readInputs();
     els.frequencyOutput.textContent = `${result.frequency.toFixed(1)} GHz`;
     els.distanceOutput.textContent = `${Math.round(result.distance)} mm`;
+    els.frequency.setAttribute("aria-valuetext", els.frequencyOutput.textContent);
+    els.distance.setAttribute("aria-valuetext", els.distanceOutput.textContent);
     els.note.textContent = result.item.description;
     drawHeatmap(result, progress);
     updateMetrics(result, scanning);
@@ -237,19 +258,24 @@
 
   function scan(event) {
     event.preventDefault();
-    cancelAnimationFrame(animationFrame);
+    stopScan();
+    scanning = true;
+    scanProgress = 0;
     const button = els.form.querySelector(".scan-button");
     button.disabled = true;
+    document.querySelector(".scan-workspace").setAttribute("aria-busy", "true");
+    document.querySelector(".metrics").setAttribute("aria-busy", "true");
     els.state.textContent = "多频相干近场扫描与重建中";
     const start = performance.now();
-    const duration = 1350;
+    const duration = reducedMotion.matches ? 1 : 1350;
     updateMetrics(readInputs(), true);
     function tick(now) {
       const progress = clamp((now - start) / duration, 0, 1);
+      scanProgress = progress;
       render(progress, progress < 1);
       if (progress < 1) animationFrame = requestAnimationFrame(tick);
       else {
-        button.disabled = false;
+        stopScan();
         els.state.textContent = "扫描完成，已生成概念结果";
         render(1, false);
       }
@@ -269,7 +295,7 @@
   }
 
   function reset() {
-    cancelAnimationFrame(animationFrame);
+    stopScan();
     els.scene.value = caseMap.has("理想修复") ? "理想修复" : cases[0].display_name;
     els.frequency.value = "10";
     els.distance.value = "50";
@@ -294,11 +320,11 @@
 
   els.form.addEventListener("submit", scan);
   els.form.addEventListener("input", () => {
-    els.state.textContent = "参数已更新，等待扫描";
+    stopScan();
+    els.state.textContent = "参数已更新 · 合成结果预览";
     render(1, false);
   });
-  els.form.addEventListener("change", () => render(1, false));
   els.reset.addEventListener("click", reset);
-  window.addEventListener("resize", () => render(1, false), { passive: true });
+  window.addEventListener("resize", () => drawHeatmap(readInputs(), scanning ? scanProgress : 1), { passive: true });
   loadCases();
 })();

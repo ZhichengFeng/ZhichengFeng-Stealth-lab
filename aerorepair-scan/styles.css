@@ -292,3 +292,75 @@ footer small { margin-left: auto; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Responsive reading and interaction refinements. */
+:root { --dim: #8ba7af; }
+html { scroll-padding-top: 90px; }
+:focus-visible { outline: 2px solid var(--cyan-bright); outline-offset: 4px; }
+.segmented input:focus-visible + span { outline: 2px solid var(--cyan-bright); outline-offset: -3px; }
+.lab-mark { flex: none; }
+.module-nav a, .button, .scan-button, .reset-button { min-height: 44px; }
+.module-nav a { display: inline-flex; align-items: center; }
+.section-head h2, .boundary-copy h2 { line-height: 1.18; text-wrap: balance; }
+.section-head { margin-bottom: 36px; }
+.controls > label > span { flex-wrap: wrap; gap: 6px; font-size: 12px; }
+.controls small { font-size: 9px; }
+.controls output { font-size: 12px; font-variant-numeric: tabular-nums; }
+.controls input[type="range"] { min-height: 28px; cursor: pointer; }
+.segmented label span { min-height: 44px; }
+.case-note, .summary-card p, .principle-grid details > p, .support-grid p,
+.bridge-grid article p, .workflow p, .boundary-cards p { font-size: 12px; }
+.metrics small { font-size: 9px; }
+.metrics span { font-size: 12px; }
+.metrics em { font-size: 10px; line-height: 1.6; }
+.metrics strong { font-variant-numeric: tabular-nums; }
+.visual-panel { min-height: 0; padding-bottom: 26px; }
+#heatmap-canvas { min-height: 0; aspect-ratio: 960 / 520; }
+.visual-head { height: auto; min-height: 52px; padding-block: 12px; gap: 12px; flex-wrap: wrap; }
+.visual-head span { line-height: 1.6; }
+.principle-grid .formula { overflow-x: auto; font-size: clamp(17px, 1.7vw, 26px); }
+.scan-status { gap: 12px; min-height: 24px; line-height: 1.5; }
+.scan-status > b { flex: none; }
+.summary-card { gap: 24px; }
+.integrity-note p { line-height: 1.7; }
+
+@media (max-width: 1300px) and (min-width: 1181px) {
+  .labbar { grid-template-columns: 1fr auto auto; gap: 12px; }
+  .module-identity { display: none; }
+  .demo-shell { grid-template-columns: 260px minmax(0, 1fr); }
+  .metrics { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 24px; border-top: 1px solid var(--line); }
+  .metrics-head { grid-column: 1 / -1; }
+}
+@media (max-width: 840px) {
+  html { scroll-padding-top: 118px; }
+  .labbar { grid-template-columns: minmax(0, 1fr) auto; gap: 0 12px; padding-top: 12px; }
+  .module-nav { display: flex; grid-column: 1 / -1; grid-row: 2; justify-self: stretch; justify-content: space-between; padding-top: 8px; }
+  .module-nav a { padding: 10px 8px; font-size: 11px; }
+  .hero { min-height: 700px; }
+  .hero-content { padding-top: 54px; }
+  .hero h1 { line-height: .98; }
+  .section { padding: 64px 24px; }
+  .section-head h2, .boundary-copy h2 { font-size: clamp(30px, 6vw, 48px); }
+  .hero-chain { gap: 8px; font-size: 8px; }
+  .hero-chain i { width: 12px; flex: none; }
+  .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+}
+@media (max-width: 540px) {
+  .hero-content { margin: 0 20px 80px; }
+  .hero { min-height: 720px; }
+  .hero h1 { font-size: clamp(46px, 13.3vw, 64px); }
+  .hero-cn { line-height: 1.45; font-size: 22px; }
+  .eyebrow { font-size: 9px; line-height: 1.7; letter-spacing: .12em; }
+  .section { padding: 52px 18px; }
+  .section-kicker { font-size: 10px; line-height: 1.7; }
+  .controls, .scan-workspace, .metrics { padding: 18px; }
+  .controls small { display: none; }
+  .metrics strong { font-size: 27px; }
+  .summary-card { padding: 22px; }
+  .hardware-label { left: 12px; top: 12px; font-size: 7px; }
+  .workflow li { min-height: 170px; }
+  .workflow b { margin-top: 20px; }
+  .aircraft-scene figcaption strong { font-size: 24px; line-height: 1.4; }
+  .boundary-cards { grid-template-columns: 1fr; }
+  footer { line-height: 1.7; }
+}

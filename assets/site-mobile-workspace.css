@@ -1,0 +1,72 @@
+/* Keep the small-screen experiment in document flow as its controls grow. */
+@media (max-width: 940px) {
+  .ending-overlay {
+    top: var(--lab-header, 112px);
+    z-index: 35;
+    overflow-y: auto;
+    padding: 24px 12px;
+    align-items: safe center;
+  }
+  .lab-shell.project-is-open, .lab-shell.absorbevo-is-open {
+    min-height: 100svh;
+  }
+  .lab-shell:is(.mode-explore, .mode-demo):not(.project-is-open):not(.absorbevo-is-open) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    height: auto;
+    padding-top: var(--lab-header, 112px);
+    overflow: visible;
+  }
+  .lab-shell:is(.mode-explore, .mode-demo):not(.project-is-open):not(.absorbevo-is-open) > .scene-viewport {
+    order: 1;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: clamp(380px, 52svh, 540px);
+    min-height: 0;
+    flex-shrink: 0;
+  }
+  .lab-shell:is(.mode-explore, .mode-demo):not(.project-is-open):not(.absorbevo-is-open) > .workspace-panels {
+    order: 3;
+    position: relative;
+    inset: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 12px;
+    margin: 0 12px;
+    padding-bottom: 24px;
+  }
+  .lab-shell:is(.mode-explore, .mode-demo):not(.project-is-open):not(.absorbevo-is-open) :is(.control-panel, .analytics-panel, .control-scroll) {
+    max-height: none;
+    overflow: visible;
+  }
+  .lab-shell:is(.mode-explore, .mode-demo):not(.project-is-open):not(.absorbevo-is-open) > .timeline-dock {
+    order: 2;
+    position: sticky;
+    top: calc(var(--lab-header, 112px) + 8px);
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: calc(100% - 24px);
+    margin: 12px auto;
+  }
+  .lab-shell:is(.mode-explore, .mode-demo):not(.project-is-open):not(.absorbevo-is-open) .stage-narrative {
+    top: 54px;
+  }
+}
+@media (max-width: 680px) {
+  .lab-shell:is(.mode-explore, .mode-demo):not(.project-is-open):not(.absorbevo-is-open) > .scene-viewport {
+    height: clamp(340px, 46svh, 460px);
+  }
+  .lab-shell:is(.mode-explore, .mode-demo):not(.project-is-open):not(.absorbevo-is-open) > .workspace-panels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lab-shell:is(.mode-explore, .mode-demo):not(.project-is-open):not(.absorbevo-is-open) .analytics-panel {
+    grid-column: 1;
+  }
+  .lab-shell:is(.mode-explore, .mode-demo):not(.project-is-open):not(.absorbevo-is-open) > .timeline-dock {
+    grid-template-columns: 78px minmax(0, 1fr);
+  }
+}

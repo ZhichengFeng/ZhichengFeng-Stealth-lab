@@ -14,8 +14,8 @@
     <meta property="og:type" content="website" />
     <title>损伤检测与修复 · Damage Detection &amp; Repair · AI Stealth Lab</title>
     <link rel="icon" href="../favicon-v2.png" type="image/png" />
-    <link rel="stylesheet" href="./styles.css" />
-    <script defer src="./app.js"></script>
+    <link rel="stylesheet" href="./styles.css?v=20260911" />
+    <script defer src="./app.js?v=20260911"></script>
   </head>
   <body>
     <a class="skip-link" href="#module-main">跳转到主要内容</a>
@@ -70,7 +70,7 @@
           <span class="fn-num">04</span>
           <span class="fn-body"><b>Repair</b><small>修复流程</small></span>
         </button>
-        <button class="flow-start" id="start-workflow" type="button" aria-label="按顺序高亮演示">▶ 开始演示</button>
+        <button class="flow-start" id="start-workflow" type="button" aria-label="开始或停止工作流导览" aria-pressed="false">▶ 开始演示</button>
       </div>
     </div>
 
@@ -87,6 +87,7 @@
         <div class="page-state" aria-live="polite">
           当前结构状态：<b id="global-state-label">完好 · Intact</b>
         </div>
+        <a class="related-module" href="../aerorepair-scan/">修复后评估 · AeroRepair Scan ↗</a>
       </section>
 
       <aside class="integrity-note" role="note">
@@ -115,14 +116,14 @@
           <div class="viewer-panel">
             <div class="viewer-head">
               <span id="damage-badge">完好 · Intact</span>
-              <span class="viewer-hint">拖动旋转 · 滚轮缩放</span>
+              <span class="viewer-hint" id="viewer-help">拖动或方向键旋转 · 滚轮 / ± 缩放 · Home 复位</span>
             </div>
-            <div class="three-holder" id="damage-viewer" aria-label="蜂窝夹层结构三维示意"></div>
+            <div class="three-holder" id="damage-viewer" role="tabpanel" tabindex="0" aria-labelledby="state-intact" aria-describedby="viewer-help"></div>
             <div class="state-switch" role="tablist" aria-label="损伤状态切换">
-              <button role="tab" data-state="intact" aria-selected="true" type="button">完好<br /><small>Intact</small></button>
-              <button role="tab" data-state="impact" aria-selected="false" type="button">冲击损伤<br /><small>Impact</small></button>
-              <button role="tab" data-state="perforation" aria-selected="false" type="button">穿孔损伤<br /><small>Perforation</small></button>
-              <button role="tab" data-state="repaired" aria-selected="false" type="button">修复后<br /><small>Repaired</small></button>
+              <button role="tab" id="state-intact" data-state="intact" aria-controls="damage-viewer" aria-selected="true" type="button">完好<br /><small>Intact</small></button>
+              <button role="tab" id="state-impact" data-state="impact" aria-controls="damage-viewer" aria-selected="false" tabindex="-1" type="button">冲击损伤<br /><small>Impact</small></button>
+              <button role="tab" id="state-perforation" data-state="perforation" aria-controls="damage-viewer" aria-selected="false" tabindex="-1" type="button">穿孔损伤<br /><small>Perforation</small></button>
+              <button role="tab" id="state-repaired" data-state="repaired" aria-controls="damage-viewer" aria-selected="false" tabindex="-1" type="button">修复后<br /><small>Repaired</small></button>
             </div>
           </div>
           <div class="side-panel">
@@ -182,14 +183,14 @@
               <b>A-scan 与 Hilbert 包络</b>
               <span class="tag-demo">演示数据</span>
             </div>
-            <canvas id="us-canvas" height="300"></canvas>
+            <canvas id="us-canvas" height="300" role="img" aria-label="当前超声测点的 A-scan 波形和 Hilbert 包络" aria-describedby="us-verdict"></canvas>
             <div class="axis-note">横轴：时间 (µs) · 纵轴：幅值（归一化）</div>
           </div>
 
           <!-- 损伤识别区 -->
           <div class="panel">
             <div class="panel-head"><b>测点识别</b></div>
-            <div class="verdict" id="us-verdict">
+            <div class="verdict" id="us-verdict" aria-live="polite" aria-atomic="true">
               <span class="verdict-label">当前测点</span>
               <b id="us-point-id">P1</b>
               <span class="verdict-status" id="us-status">Intact</span>
@@ -240,7 +241,7 @@
               <b>S 参数采集</b>
               <span class="tag-demo">演示数据</span>
             </div>
-            <canvas id="em-canvas" height="300"></canvas>
+            <canvas id="em-canvas" height="300" role="img" aria-label="当前测点与完好参考的 S11 反射曲线"></canvas>
             <div class="axis-note">横轴：频率 (GHz) · 纵轴：S11 (dB) · 单端口反射架构，仅 S11</div>
             <div class="ctrl-row wrap" id="em-curve-btns"></div>
           </div>
@@ -251,7 +252,7 @@
             <ol class="ntff" id="ntff-list"></ol>
             <div class="mini-map">
               <span class="mini-map-label">近场响应重建（演示）</span>
-              <canvas id="em-map-canvas" height="150"></canvas>
+              <canvas id="em-map-canvas" height="150" role="img" aria-label="当前结构状态的合成近场响应分布"></canvas>
             </div>
             <p class="note-small">技术路线示意：网页不执行实时近远场数值计算。</p>
             <button class="next-btn" data-next="repair" type="button">下一步：修复流程 ↓</button>
@@ -275,7 +276,7 @@
         <div class="module-body two-col">
           <div class="viewer-panel">
             <div class="viewer-head">
-              <span id="repair-step-badge">01 · 损伤评估与区域标记</span>
+              <span id="repair-step-badge" aria-live="polite">01 · 损伤评估与区域标记</span>
               <span class="viewer-hint">挖补剖面示意</span>
             </div>
             <svg id="repair-svg" viewBox="0 0 560 270" role="img" aria-label="挖补修复剖面分步示意"></svg>
